@@ -75,14 +75,16 @@
         </button>
       </div>
       <div class="hero-stats fade-in">
-        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Natural</div></div>
-        <div class="stat"><div class="stat-num">4+</div><div class="stat-label">Produk</div></div>
-        <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Pelanggan</div></div>
+        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Organik</div></div>
+        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Halal</div></div>
+        <div class="stat"><div class="stat-num">200+</div><div class="stat-label">Petani Lokal</div></div>
+        <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Mitra/Client</div></div>
+        <div class="stat"><div class="stat-num">1k+</div><div class="stat-label">Hasil Panen</div></div>
       </div>
     </div>
     <div class="hero-visual">
       <div class="hero-circle">
-        <img src="{{ url_for('static', filename='img/beetroot.png') }}" alt="Beet" class="hero-beet-img">
+        <img src="{{ url_for('static', filename='img/beetroot-removebg-preview.png') }}" alt="Beet" class="hero-beet-img">
         <div class="hero-orbit"><div class="hero-orbit-dot"></div></div>
       </div>
     </div>
@@ -96,12 +98,12 @@
     <div class="about-grid">
       <div class="about-img-wrap fade-in-left">
         <div class="about-img-main">
-          <img src="{{ url_for('static', filename='img/compressed_IMG_0106.jpg') }}" alt="Beet Farm" loading="lazy">
+          <img src="{{ url_for('static', filename='img/compressed_IMG_0106.JPG') }}" alt="Beet Farm" loading="lazy">
         </div>
-        <div class="about-badge">
+        <!--<div class="about-badge">
           <div class="num">2024</div>
           <div class="lbl">Berdiri Sejak</div>
-        </div>
+        </div>-->
       </div>
       <div class="fade-in-right">
         <div class="section-tag">Tentang Kami</div>
@@ -359,26 +361,41 @@
       <div class="divider"></div>
       <p class="section-desc" style="margin:0 auto;">Dikelola langsung dari jantung pegunungan Indonesia dengan standar produksi terbaik</p>
     </div>
-    <div class="gallery-grid">
+    <div class="gallery-grid" id="galleryGrid">
       <div class="gallery-item fade-in">
-        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80" alt="Farm" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
-        <div class="overlay"><span>Kebun Bit Kami</span></div>
+        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80" alt="Kebun Bit Kami" loading="lazy" />
+        <div class="overlay">
+          <div class="ov-sub">Lokasi Utama</div>
+          <div class="ov-title">Kebun Bit Kami</div>
+        </div>
       </div>
       <div class="gallery-item fade-in">
-        <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400&q=80" alt="Processing" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
-        <div class="overlay"><span>Proses Produksi</span></div>
+        <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=600&q=80" alt="Proses Produksi" loading="lazy" />
+        <div class="overlay">
+          <div class="ov-sub">Produksi</div>
+          <div class="ov-title">Proses Produksi</div>
+        </div>
       </div>
       <div class="gallery-item fade-in">
-        <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=400&q=80" alt="Products" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
-        <div class="overlay"><span>Produk Siap Kirim</span></div>
+        <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=600&q=80" alt="Produk Siap Kirim" loading="lazy" />
+        <div class="overlay">
+          <div class="ov-sub">Distribusi</div>
+          <div class="ov-title">Produk Siap Kirim</div>
+        </div>
       </div>
       <div class="gallery-item fade-in">
-        <img src="https://images.unsplash.com/photo-1595856619767-9e87a5bb3b53?w=400&q=80" alt="Quality" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
-        <div class="overlay"><span>Quality Control</span></div>
+        <img src="https://images.unsplash.com/photo-1595856619767-9e87a5bb3b53?w=600&q=80" alt="Quality Control" loading="lazy" />
+        <div class="overlay">
+          <div class="ov-sub">Standar Mutu</div>
+          <div class="ov-title">Quality Control</div>
+        </div>
       </div>
       <div class="gallery-item fade-in">
-        <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&q=80" alt="Mountain" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
-        <div class="overlay"><span>Pegunungan Segar</span></div>
+        <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600&q=80" alt="Pegunungan Segar" loading="lazy" />
+        <div class="overlay">
+          <div class="ov-sub">Lingkungan</div>
+          <div class="ov-title">Pegunungan Segar</div>
+        </div>
       </div>
     </div>
   </div>
@@ -426,44 +443,114 @@
       <h2 class="section-title">Apa Kata <span>Pelanggan</span> Kami</h2>
       <div class="divider"></div>
     </div>
-    <div class="testi-grid">
-      <div class="testi-card fade-in">
-        <div class="testi-quote">"</div>
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">Produk buah bit dari BCI benar-benar mengubah gaya hidup saya. Setelah rutin konsumsi 3 minggu, stamina meningkat drastis dan tubuh terasa lebih bugar setiap pagi!</p>
-        <div class="testi-author">
-          <div class="testi-avatar">BS</div>
-          <div>
-            <div class="testi-name">Budi Santoso</div>
-            <div class="testi-role">Owner UMKM, Jakarta</div>
+
+    <!-- Slider wrapper -->
+    <div class="testi-slider-wrap" id="testiWrap">
+      <div class="testi-track" id="testiTrack">
+
+        <div class="testi-slide">
+          <div class="testi-card fade-in">
+            <div class="testi-quote">"</div>
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">Produk buah bit dari BCI benar-benar mengubah gaya hidup saya. Setelah rutin konsumsi 3 minggu, stamina meningkat drastis dan tubuh terasa lebih bugar setiap pagi!</p>
+            <div class="testi-author">
+              <div class="testi-avatar">BS</div>
+              <div>
+                <div class="testi-name">Budi Santoso</div>
+                <div class="testi-role">Owner UMKM, Jakarta</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="testi-card fade-in">
-        <div class="testi-quote">"</div>
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">Sebagai entrepreneur yang sibuk, kapsul ekstrak bit dari BCI sangat membantu. Praktis, efektif, dan rasanya memang berbeda. Kualitas premium dengan harga yang sangat terjangkau.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">RP</div>
-          <div>
-            <div class="testi-name">Rina Putri</div>
-            <div class="testi-role">Entrepreneur, Surabaya</div>
+
+        <div class="testi-slide">
+          <div class="testi-card fade-in">
+            <div class="testi-quote">"</div>
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">Sebagai entrepreneur yang sibuk, kapsul ekstrak bit dari BCI sangat membantu. Praktis, efektif, dan rasanya memang berbeda. Kualitas premium dengan harga yang sangat terjangkau.</p>
+            <div class="testi-author">
+              <div class="testi-avatar">RP</div>
+              <div>
+                <div class="testi-name">Rina Putri</div>
+                <div class="testi-role">Entrepreneur, Surabaya</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="testi-card fade-in">
-        <div class="testi-quote">"</div>
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">Awalnya ragu, tapi setelah coba bubuk bit premium-nya untuk smoothie setiap hari, kulit jadi lebih cerah dan energi lebih tahan lama. Pasti order lagi dan rekomendasikan ke teman!</p>
-        <div class="testi-author">
-          <div class="testi-avatar">AP</div>
-          <div>
-            <div class="testi-name">Andi Pratama</div>
-            <div class="testi-role">Pelanggan Setia, Bandung</div>
+
+        <div class="testi-slide">
+          <div class="testi-card fade-in">
+            <div class="testi-quote">"</div>
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">Awalnya ragu, tapi setelah coba bubuk bit premium-nya untuk smoothie setiap hari, kulit jadi lebih cerah dan energi lebih tahan lama. Pasti order lagi dan rekomendasikan ke teman!</p>
+            <div class="testi-author">
+              <div class="testi-avatar">AP</div>
+              <div>
+                <div class="testi-name">Andi Pratama</div>
+                <div class="testi-role">Pelanggan Setia, Bandung</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+
+        <div class="testi-slide">
+          <div class="testi-card fade-in">
+            <div class="testi-quote">"</div>
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">Saya seorang atlet dan sudah mencoba berbagai suplemen. Jus bit BCI adalah yang paling alami dan efektif. Performa lari saya meningkat dan recovery lebih cepat dari sebelumnya.</p>
+            <div class="testi-author">
+              <div class="testi-avatar">DW</div>
+              <div>
+                <div class="testi-name">Dewi Wahyuni</div>
+                <div class="testi-role">Atlet Lari, Yogyakarta</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-slide">
+          <div class="testi-card fade-in">
+            <div class="testi-quote">"</div>
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">Dokter menyarankan saya konsumsi bit untuk tekanan darah. Alhamdulillah dengan produk BCI, hasilnya nyata dalam 2 minggu. Kemasannya higienis dan pengirimannya cepat!</p>
+            <div class="testi-author">
+              <div class="testi-avatar">HN</div>
+              <div>
+                <div class="testi-name">Hendra Nugroho</div>
+                <div class="testi-role">Pensiunan PNS, Semarang</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-slide">
+          <div class="testi-card fade-in">
+            <div class="testi-quote">"</div>
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">Reseller BCI sejak setahun lalu dan pelanggan saya selalu repeat order! Margin bagus, produk berkualitas, dan tim BCI sangat responsif. Partner bisnis terbaik yang pernah saya miliki.</p>
+            <div class="testi-author">
+              <div class="testi-avatar">SR</div>
+              <div>
+                <div class="testi-name">Sari Rahmawati</div>
+                <div class="testi-role">Reseller BCI, Medan</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.testi-track -->
+    </div><!-- /.testi-slider-wrap -->
+
+    <!-- Controls -->
+    <div class="testi-controls">
+      <button class="testi-btn" id="testiPrev" aria-label="Sebelumnya">&#8592;</button>
+      <div class="testi-dots" id="testiDots"></div>
+      <button class="testi-btn" id="testiNext" aria-label="Berikutnya">&#8594;</button>
     </div>
+    <div class="testi-progress">
+      <div class="testi-progress-bar" id="testiProgressBar"></div>
+    </div>
+
   </div>
 </section>
 
@@ -487,14 +574,14 @@
             <div class="contact-item-icon">📞</div>
             <div class="contact-item-text">
               <div class="contact-item-label">Telepon</div>
-              +62 812 3456 7890
+              082121217307
             </div>
           </div>
           <div class="contact-item">
             <div class="contact-item-icon">✉️</div>
             <div class="contact-item-text">
               <div class="contact-item-label">Email</div>
-              <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bed7d0d8d1fedcdbdbcadddbd0cadbccd7d0dad1d0dbcdd7df90ddd1d3">[email&#160;protected]</a>
+              <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bed7d0d8d1fedcdbdbcadddbd0cadbccd7d0dad1d0dbcdd7df90ddd1d3"><span class="__cf_email__" data-cfemail="3b52555d547b595e5e4f585e554f5e4915525f">[email&#160;protected]</span></a>
             </div>
           </div>
         </div>

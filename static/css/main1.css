@@ -199,26 +199,97 @@
 .gallery-header .divider { margin: 16px auto; }
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto auto;
-  gap: 16px;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  grid-template-rows: 280px 200px;
+  grid-template-areas:
+    "big  b   c"
+    "big  d   e";
+  gap: 12px;
 }
+
+/* Assign setiap item ke area */
+.gallery-item:nth-child(1) { grid-area: big; }
+.gallery-item:nth-child(2) { grid-area: b;   }
+.gallery-item:nth-child(3) { grid-area: c;   }
+.gallery-item:nth-child(4) { grid-area: d;   }
+.gallery-item:nth-child(5) { grid-area: e;   }
+
 .gallery-item {
   border-radius: 16px; overflow: hidden;
   background: var(--primary-pale);
-  display: flex; align-items: center; justify-content: center;
-  min-height: 200px; position: relative;
+  display: block;
+  position: relative; min-height: 0;
+  cursor: pointer;
 }
-.gallery-item:first-child { grid-row: 1 / 3; min-height: 416px; }
+
+/* Gambar mengisi penuh item */
+.gallery-item img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  display: block;
+  transition: transform .5s ease;
+}
+.gallery-item:hover img { transform: scale(1.06); }
+
+/* Overlay — gradient dari bawah */
 .gallery-item .overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(143,27,58,.7) 0%, transparent 60%);
-  opacity: 0; transition: opacity .3s;
-  display: flex; align-items: flex-end; padding: 20px;
+  background: linear-gradient(
+    to top,
+    rgba(26,10,15,.82) 0%,
+    rgba(143,27,58,.25) 45%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity .35s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 20px 22px;
+  gap: 4px;
 }
-.gallery-item:hover .overlay { opacity: 1; }
-.gallery-item .overlay span { color: #fff; font-weight: 600; font-size: .9rem; }
-.gallery-emoji { font-size: 4rem; }
+
+/* Label selalu terlihat tipis di bawah untuk hint */
+.gallery-item .overlay-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(26,10,15,.65) 0%, transparent 100%);
+  padding: 28px 18px 14px;
+  pointer-events: none;
+}
+.gallery-item .overlay-label span {
+  color: #fff;
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  opacity: .85;
+  display: block;
+}
+
+/* Hover / tap aktif */
+.gallery-item:hover .overlay,
+.gallery-item.tapped .overlay { opacity: 1; }
+
+.gallery-item .overlay .ov-title {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  font-family: 'Cormorant Garamond', serif;
+}
+.gallery-item .overlay .ov-sub {
+  color: rgba(255,255,255,.72);
+  font-size: .78rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+/* item besar — title lebih besar */
+.gallery-item:nth-child(1) .overlay .ov-title { font-size: 1.35rem; }
+
+
+
 
 
 /* ─────────────────────────────────────────────────────────────
@@ -261,16 +332,44 @@
 
 
 /* ─────────────────────────────────────────────────────────────
-   12. TESTIMONIALS
+   12. TESTIMONIALS SLIDER
 ───────────────────────────────────────────────────────────── */
 #testimoni { background: var(--white); }
 .testi-header { text-align: center; margin-bottom: 50px; }
 .testi-header .divider { margin: 16px auto; }
-.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+
+/* Slider wrapper */
+.testi-slider-wrap {
+  position: relative; overflow: hidden; cursor: grab;
+}
+.testi-slider-wrap:active { cursor: grabbing; }
+
+/* Track holds all cards inline */
+.testi-track {
+  display: flex; gap: 0;
+  transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+  will-change: transform;
+}
+
+/* Each slide shows 3 cards on desktop, 2 on tablet, 1 on mobile */
+.testi-slide {
+  flex: 0 0 33.333%;
+  min-width: 0;
+  padding: 0 14px;
+  box-sizing: border-box;
+}
+@media (max-width: 900px) {
+  .testi-slide { flex: 0 0 50%; }
+}
+@media (max-width: 580px) {
+  .testi-slide { flex: 0 0 100%; }
+}
+
 .testi-card {
   background: var(--off-white); border-radius: 20px;
   padding: 32px 28px; border: 1px solid var(--border);
   position: relative; transition: box-shadow .3s, transform .3s;
+  height: 100%;
 }
 .testi-card:hover { box-shadow: var(--shadow); transform: translateY(-4px); }
 .testi-quote {
@@ -289,6 +388,50 @@
 }
 .testi-name { font-weight: 600; font-size: .9rem; }
 .testi-role { font-size: .78rem; color: var(--text-muted); margin-top: 2px; }
+
+/* Controls — reuse slider-controls style */
+.testi-controls {
+  display: flex; align-items: center; justify-content: center;
+  gap: 16px; margin-top: 40px;
+}
+.testi-btn {
+  width: 46px; height: 46px; border-radius: 50%;
+  border: 2px solid var(--primary); background: transparent;
+  color: var(--primary); cursor: pointer; font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, color .2s;
+}
+.testi-btn:hover { background: var(--primary); color: #fff; }
+
+/* Progress bar auto-play */
+.testi-progress {
+  width: 100%; height: 3px;
+  background: var(--border);
+  border-radius: 3px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+.testi-progress-bar {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 3px;
+  width: 0%;
+  animation: testiProgress 4s linear infinite;
+}
+.testi-slider-wrap:hover .testi-progress-bar {
+  animation-play-state: paused;
+}
+@keyframes testiProgress {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+.testi-dots { display: flex; gap: 8px; }
+.testi-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--border); cursor: pointer; border: none;
+  transition: background .2s, transform .2s;
+}
+.testi-dot.active { background: var(--primary); transform: scale(1.3); }
 
 
 /* ─────────────────────────────────────────────────────────────
@@ -394,9 +537,18 @@ footer span { color: var(--accent); }
   .bg-content { order: 2; }
   .about-badge { bottom: -10px; right: 10px; }
   .vm-grid    { grid-template-columns: 1fr; }
-  .testi-grid { grid-template-columns: 1fr; }
-  .gallery-grid { grid-template-columns: 1fr 1fr; }
-  .gallery-item:first-child { grid-row: auto; }
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 220px);
+    grid-template-areas:
+      "big"
+      "b"
+      "c"
+      "d"
+      "e";
+    gap: 10px;
+  }
+  .gallery-item:nth-child(1) .overlay .ov-title { font-size: 1.1rem; }
   .benefits-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .product-info  { padding: 28px 24px; }
 }
@@ -405,10 +557,20 @@ footer span { color: var(--accent); }
   .hero-content { grid-template-columns: 1fr; gap: 40px; text-align: center; }
   .hero-visual  { display: none; }
   .hero-btns, .hero-stats { justify-content: center; }
+  .hero-stats { gap: 12px 16px; }
+  .stat { flex: 1 1 calc(33.33% - 16px); min-width: 64px; }
   .benefits-grid { grid-template-columns: 1fr; gap: 12px; }
   .benefit-num   { font-size: 2.2rem; }
-  .gallery-grid  { grid-template-columns: 1fr; }
-  .gallery-item:first-child { min-height: 200px; }
+  .gallery-grid  {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 200px);
+    grid-template-areas:
+      "big"
+      "b"
+      "c"
+      "d"
+      "e";
+  }
   .form-row      { grid-template-columns: 1fr; }
   .contact-form  { padding: 28px 20px; }
 }
@@ -478,7 +640,7 @@ height: 22px;
 }
 
 .hero-beet-img {
-  width: 240px;   /* atur sesuai kebutuhan */
+  width: 360px;   /* atur sesuai kebutuhan */
   height: auto;
   display: block;
-} 
+}
