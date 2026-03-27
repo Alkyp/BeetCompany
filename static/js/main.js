@@ -259,7 +259,7 @@ function initScrollAnimations() {
 
 
 /* ============================================
-   FORM SUBMIT
+   FORM SUBMIT — kirim ke Flask /send-message
    ============================================ */
 function initFormSubmit() {
   var submitBtn = document.getElementById('submitBtn');
@@ -280,9 +280,12 @@ function initFormSubmit() {
   submitBtn.addEventListener('click', function () {
     var nameEl    = document.getElementById('formName');
     var emailEl   = document.getElementById('formEmail');
+    var subjectEl = document.getElementById('formSubject');
     var messageEl = document.getElementById('formMessage');
+
     var name    = nameEl    ? nameEl.value.trim()    : '';
     var email   = emailEl   ? emailEl.value.trim()   : '';
+    var subject = subjectEl ? subjectEl.value.trim() : '';
     var message = messageEl ? messageEl.value.trim() : '';
 
     if (!name || !email || !message) {
@@ -292,29 +295,46 @@ function initFormSubmit() {
       showMsg('error', T('form.err.email')); return;
     }
 
-    var original = submitBtn.textContent;
     submitBtn.textContent = T('form.sending');
     submitBtn.disabled    = true;
 
-    window.setTimeout(function () {
-      submitBtn.textContent      = T('form.sent');
-      submitBtn.style.background = '#22c55e';
-      submitBtn.style.color      = '#fff';
-      showMsg('success', T('form.success'));
+    fetch('/send-message', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, email: email, subject: subject, message: message })
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      if (data.status === 'ok') {
+        submitBtn.textContent      = T('form.sent');
+        submitBtn.style.background = '#22c55e';
+        submitBtn.style.color      = '#fff';
+        showMsg('success', data.message || T('form.success'));
 
-      window.setTimeout(function () {
-        submitBtn.textContent      = T('contact.form.submit');
-        submitBtn.style.background = '';
-        submitBtn.style.color      = '';
-        submitBtn.disabled         = false;
-        var ids = ['formName', 'formEmail', 'formSubject', 'formMessage'];
-        for (var i = 0; i < ids.length; i++) {
-          var el = document.getElementById(ids[i]);
-          if (el) el.value = '';
-        }
-        if (formMsg) formMsg.style.display = 'none';
-      }, 3500);
-    }, 1400);
+        window.setTimeout(function () {
+          submitBtn.textContent      = T('contact.form.submit');
+          submitBtn.style.background = '';
+          submitBtn.style.color      = '';
+          submitBtn.disabled         = false;
+          var ids = ['formName', 'formEmail', 'formSubject', 'formMessage'];
+          for (var i = 0; i < ids.length; i++) {
+            var el = document.getElementById(ids[i]);
+            if (el) el.value = '';
+          }
+          if (formMsg) formMsg.style.display = 'none';
+        }, 3500);
+      } else {
+        showMsg('error', data.message || 'Gagal mengirim pesan.');
+        submitBtn.textContent = T('contact.form.submit');
+        submitBtn.disabled    = false;
+      }
+    })
+    .catch(function (err) {
+      console.error('Form error:', err);
+      showMsg('error', 'Terjadi kesalahan jaringan. Coba lagi.');
+      submitBtn.textContent = T('contact.form.submit');
+      submitBtn.disabled    = false;
+    });
   });
 }
 
