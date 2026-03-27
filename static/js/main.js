@@ -6,7 +6,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.documentElement.classList.add('js-loaded');
 
+  /* Bahasa — init harus pertama agar teks langsung benar */
+  if (window.BCI_LANG) {
+    window.BCI_LANG.init();
+  }
+
   initNavbar();
+  initVideoSection();
   initSlider();
   initTestiSlider();
   initGalleryTouch();
@@ -91,9 +97,42 @@ function updateActiveNavLink() {
 
 
 /* ============================================
+   VIDEO SECTION — Lazy-load iframe on play click
+   Video tidak di-load sebelum pengguna klik putar
+   ============================================ */
+function initVideoSection() {
+  var YT_VIDEO_ID = '59S1IIoFhDM'; /* ← Ganti dengan ID video YouTube kamu */
+
+  var thumb      = document.getElementById('videoThumb');
+  var playBtn    = document.getElementById('videoPlayBtn');
+  var frameWrap  = document.getElementById('videoFrameWrap');
+  var iframe     = document.getElementById('videoFrame');
+
+  if (!thumb || !playBtn || !frameWrap || !iframe) return;
+
+  var embedURL = 'https://www.youtube.com/embed/' + YT_VIDEO_ID
+               + '?autoplay=1&rel=0&modestbranding=1';
+
+  function loadVideo() {
+    /* Set src hanya saat diklik — hemat kuota */
+    iframe.src = embedURL;
+    /* Sembunyikan thumbnail, tampilkan iframe */
+    thumb.style.display     = 'none';
+    frameWrap.style.display = 'block';
+  }
+
+  playBtn.addEventListener('click', loadVideo);
+  /* Klik di mana saja pada thumbnail juga memulai video */
+  thumb.addEventListener('click', function (e) {
+    if (e.target !== playBtn && !playBtn.contains(e.target)) {
+      loadVideo();
+    }
+  });
+}
+
+
+/* ============================================
    PRODUCT SLIDER
-   - Selalu 1 slide per view (desktop & mobile)
-   - Tidak ada auto-play, hanya on-click / swipe
    ============================================ */
 function initSlider() {
   var wrap          = document.querySelector('.slider-wrap');
@@ -108,12 +147,10 @@ function initSlider() {
   var total   = slides.length;
   var current = 0;
 
-  /* Selalu 1 slide — lebar track = 100% wrap */
   function slideWidth() {
     return wrap ? wrap.offsetWidth : track.offsetWidth;
   }
 
-  /* Bangun dots */
   function renderDots() {
     dotsContainer.innerHTML = '';
     for (var i = 0; i < total; i++) {
@@ -127,17 +164,13 @@ function initSlider() {
     }
   }
 
-  /* Navigasi ke index */
   function goTo(index) {
     current = Math.max(0, Math.min(index, total - 1));
-
     track.style.transform = 'translateX(-' + (current * slideWidth()) + 'px)';
-
     var dots = dotsContainer.querySelectorAll('.dot');
     for (var i = 0; i < dots.length; i++) {
       dots[i].classList.toggle('active', i === current);
     }
-
     btnPrev.disabled      = (current === 0);
     btnNext.disabled      = (current === total - 1);
     btnPrev.style.opacity = btnPrev.disabled ? '0.4' : '1';
@@ -147,61 +180,39 @@ function initSlider() {
   btnNext.addEventListener('click', function () { goTo(current + 1); });
   btnPrev.addEventListener('click', function () { goTo(current - 1); });
 
-  /* Touch swipe */
-  var touchStartX = 0;
-  var touchDeltaX = 0;
-
+  var touchStartX = 0, touchDeltaX = 0;
   track.addEventListener('touchstart', function (e) {
-    touchStartX = e.changedTouches[0].screenX;
-    touchDeltaX = 0;
+    touchStartX = e.changedTouches[0].screenX; touchDeltaX = 0;
   }, { passive: true });
-
   track.addEventListener('touchmove', function (e) {
     touchDeltaX = e.changedTouches[0].screenX - touchStartX;
   }, { passive: true });
-
   track.addEventListener('touchend', function () {
-    if (Math.abs(touchDeltaX) > 50) {
-      goTo(touchDeltaX < 0 ? current + 1 : current - 1);
-    }
+    if (Math.abs(touchDeltaX) > 50) goTo(touchDeltaX < 0 ? current + 1 : current - 1);
   }, { passive: true });
 
-  /* Mouse drag */
-  var isDragging = false;
-  var dragStartX = 0;
-  var dragDeltaX = 0;
-
+  var isDragging = false, dragStartX = 0, dragDeltaX = 0;
   if (wrap) {
     wrap.addEventListener('mousedown', function (e) {
-      isDragging = true;
-      dragStartX = e.clientX;
-      dragDeltaX = 0;
-      track.style.transition = 'none';
-      wrap.style.cursor = 'grabbing';
+      isDragging = true; dragStartX = e.clientX; dragDeltaX = 0;
+      track.style.transition = 'none'; wrap.style.cursor = 'grabbing';
     });
-
     window.addEventListener('mousemove', function (e) {
       if (!isDragging) return;
       dragDeltaX = e.clientX - dragStartX;
-      var base = current * slideWidth();
-      track.style.transform = 'translateX(' + (-base + dragDeltaX) + 'px)';
+      track.style.transform = 'translateX(' + (-current * slideWidth() + dragDeltaX) + 'px)';
     });
-
     window.addEventListener('mouseup', function () {
       if (!isDragging) return;
-      isDragging = false;
-      track.style.transition = '';
-      wrap.style.cursor = '';
+      isDragging = false; track.style.transition = ''; wrap.style.cursor = '';
       var threshold = slideWidth() * 0.2;
       if      (dragDeltaX < -threshold) goTo(current + 1);
       else if (dragDeltaX >  threshold) goTo(current - 1);
       else                              goTo(current);
     });
-
     wrap.addEventListener('click', function (e) {
       if (Math.abs(dragDeltaX) > 5) e.preventDefault();
     });
-
     wrap.setAttribute('tabindex', '0');
     wrap.addEventListener('keydown', function (e) {
       if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); }
@@ -209,17 +220,14 @@ function initSlider() {
     });
   }
 
-  /* Recalculate posisi saat resize (lebar berubah) */
   var resizeTimer = null;
   window.addEventListener('resize', function () {
     if (resizeTimer !== null) window.clearTimeout(resizeTimer);
     resizeTimer = window.setTimeout(function () {
-      goTo(current);
-      resizeTimer = null;
+      goTo(current); resizeTimer = null;
     }, 150);
   });
 
-  /* Init */
   renderDots();
   goTo(0);
 }
@@ -233,9 +241,7 @@ function initScrollAnimations() {
   if (!elements.length) return;
 
   if (!('IntersectionObserver' in window)) {
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].classList.add('visible');
-    }
+    for (var i = 0; i < elements.length; i++) elements[i].classList.add('visible');
     return;
   }
 
@@ -248,9 +254,7 @@ function initScrollAnimations() {
     }
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-  for (var j = 0; j < elements.length; j++) {
-    observer.observe(elements[j]);
-  }
+  for (var j = 0; j < elements.length; j++) observer.observe(elements[j]);
 }
 
 
@@ -261,6 +265,10 @@ function initFormSubmit() {
   var submitBtn = document.getElementById('submitBtn');
   var formMsg   = document.getElementById('formMsg');
   if (!submitBtn) return;
+
+  function T(key) {
+    return (window.BCI_LANG) ? window.BCI_LANG.t(key) : key;
+  }
 
   function showMsg(type, text) {
     if (!formMsg) return;
@@ -273,32 +281,29 @@ function initFormSubmit() {
     var nameEl    = document.getElementById('formName');
     var emailEl   = document.getElementById('formEmail');
     var messageEl = document.getElementById('formMessage');
-
     var name    = nameEl    ? nameEl.value.trim()    : '';
     var email   = emailEl   ? emailEl.value.trim()   : '';
     var message = messageEl ? messageEl.value.trim() : '';
 
     if (!name || !email || !message) {
-      showMsg('error', '⚠️ Mohon lengkapi nama, email, dan pesan Anda.');
-      return;
+      showMsg('error', T('form.err.required')); return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      showMsg('error', '⚠️ Format email tidak valid.');
-      return;
+      showMsg('error', T('form.err.email')); return;
     }
 
     var original = submitBtn.textContent;
-    submitBtn.textContent = 'Mengirim…';
+    submitBtn.textContent = T('form.sending');
     submitBtn.disabled    = true;
 
     window.setTimeout(function () {
-      submitBtn.textContent      = '✓ Pesan Terkirim!';
+      submitBtn.textContent      = T('form.sent');
       submitBtn.style.background = '#22c55e';
       submitBtn.style.color      = '#fff';
-      showMsg('success', '✅ Pesan berhasil dikirim! Tim kami akan segera menghubungi Anda.');
+      showMsg('success', T('form.success'));
 
       window.setTimeout(function () {
-        submitBtn.textContent      = original;
+        submitBtn.textContent      = T('contact.form.submit');
         submitBtn.style.background = '';
         submitBtn.style.color      = '';
         submitBtn.disabled         = false;
@@ -316,8 +321,6 @@ function initFormSubmit() {
 
 /* ============================================
    TESTIMONIAL SLIDER — Infinite Loop + Auto-play
-   Teknik: clone semua slide di awal & akhir,
-   lalu snap tanpa animasi saat masuk zona clone.
    ============================================ */
 function initTestiSlider() {
   var wrap    = document.getElementById('testiWrap');
@@ -328,60 +331,45 @@ function initTestiSlider() {
 
   if (!track || !btnPrev || !btnNext || !dotsEl) return;
 
-  /* ── 1. Ambil slide asli, lalu clone ── */
   var origSlides = track.querySelectorAll('.testi-slide');
-  var total      = origSlides.length; // 6
+  var total      = origSlides.length;
 
-  // Clone semua slide: tempel salinan di depan & belakang
   for (var c = 0; c < total; c++) {
     var cloneFront = origSlides[c].cloneNode(true);
     var cloneBack  = origSlides[c].cloneNode(true);
     cloneFront.setAttribute('aria-hidden', 'true');
     cloneBack.setAttribute('aria-hidden', 'true');
-    track.insertBefore(cloneFront, track.firstChild); // prepend (dibalik urutan, diperbaiki di bawah)
+    track.insertBefore(cloneFront, track.firstChild);
     track.appendChild(cloneBack);
   }
 
-  // Setelah insertBefore berulang, urutan clone depan terbalik — perbaiki
-  // Hapus semua yang baru ditambah di depan, lalu insert ulang dengan urutan benar
   var allNow = track.querySelectorAll('.testi-slide');
-  // allNow[0..total-1] = clone depan TERBALIK, [total..2*total-1] = asli, [2*total..3*total-1] = clone belakang
-  // Hapus clone depan yang terbalik, ganti dengan urutan benar
-  for (var r = 0; r < total; r++) {
-    track.removeChild(track.firstChild);
-  }
-  // Insert clone depan dengan urutan benar (origSlides[total-1] → origSlides[0] di posisi paling depan)
+  for (var r = 0; r < total; r++) track.removeChild(track.firstChild);
   for (var f = total - 1; f >= 0; f--) {
     var cf = origSlides[f].cloneNode(true);
     cf.setAttribute('aria-hidden', 'true');
     track.insertBefore(cf, track.firstChild);
   }
 
-  /* ── 2. State ── */
-  var allSlides = track.querySelectorAll('.testi-slide'); // 18 slide
-  var current   = total;     // mulai dari slide asli pertama (index = total)
+  var allSlides = track.querySelectorAll('.testi-slide');
+  var current   = total;
   var isJumping = false;
   var autoTimer = null;
-  var AUTO_DELAY = 4000;     // ms antar slide
+  var AUTO_DELAY = 4000;
 
-  /* ── 3. Helper ── */
-  function pv() { // per-view
+  function pv() {
     if (window.innerWidth <= 580) return 1;
     if (window.innerWidth <= 900) return 2;
     return 3;
   }
-  function sw() { return wrap.offsetWidth / pv(); } // lebar 1 slide
-
-  /* dot index = posisi dalam slide asli (0..total-1) */
+  function sw() { return wrap.offsetWidth / pv(); }
   function dotIndex() { return (current - total) % total; }
 
-  /* ── 4. Render dots (jumlah = total slide asli) ── */
   var progressBar = document.getElementById('testiProgressBar');
-
   function resetProgress() {
     if (!progressBar) return;
     progressBar.style.animation = 'none';
-    progressBar.getBoundingClientRect(); // reflow
+    progressBar.getBoundingClientRect();
     progressBar.style.animation = '';
   }
 
@@ -393,9 +381,7 @@ function initTestiSlider() {
       btn.setAttribute('aria-label', 'Testimoni ' + (i + 1));
       (function(idx) {
         btn.addEventListener('click', function() {
-          stopAuto();
-          jumpTo(total + idx);
-          startAuto();
+          stopAuto(); jumpTo(total + idx); startAuto();
         });
       }(i));
       dotsEl.appendChild(btn);
@@ -404,55 +390,34 @@ function initTestiSlider() {
 
   function updateDots() {
     var dots = dotsEl.querySelectorAll('.testi-dot');
-    var di   = dotIndex();
-    for (var i = 0; i < dots.length; i++) {
-      dots[i].classList.toggle('active', i === di);
-    }
+    var di = dotIndex();
+    for (var i = 0; i < dots.length; i++) dots[i].classList.toggle('active', i === di);
   }
 
-  /* ── 5. Gerak (dengan animasi) ── */
   function goTo(index) {
     if (isJumping) return;
     current = index;
     track.style.transition = 'transform .5s cubic-bezier(.25,.46,.45,.94)';
     track.style.transform  = 'translateX(-' + (current * sw()) + 'px)';
-    updateDots();
-    resetProgress();
+    updateDots(); resetProgress();
   }
 
-  /* Snap tanpa animasi (untuk infinite jump) */
   function jumpTo(index) {
-    isJumping = true;
-    current   = index;
+    isJumping = true; current = index;
     track.style.transition = 'none';
     track.style.transform  = 'translateX(-' + (current * sw()) + 'px)';
-    // Force reflow agar browser terapkan 'none' sebelum transition diaktifkan lagi
     track.getBoundingClientRect();
-    isJumping = false;
-    updateDots();
+    isJumping = false; updateDots();
   }
 
-  /* Saat transisi selesai: cek apakah perlu snap ke zona real */
   track.addEventListener('transitionend', function() {
-    // Zona clone belakang: current >= total*2
-    if (current >= total * 2) {
-      jumpTo(current - total);
-    }
-    // Zona clone depan: current < total
-    if (current < total) {
-      jumpTo(current + total);
-    }
+    if (current >= total * 2) jumpTo(current - total);
+    if (current < total)      jumpTo(current + total);
   });
 
-  /* ── 6. Tombol prev/next ── */
-  btnNext.addEventListener('click', function() {
-    stopAuto(); goTo(current + 1); startAuto();
-  });
-  btnPrev.addEventListener('click', function() {
-    stopAuto(); goTo(current - 1); startAuto();
-  });
+  btnNext.addEventListener('click', function() { stopAuto(); goTo(current + 1); startAuto(); });
+  btnPrev.addEventListener('click', function() { stopAuto(); goTo(current - 1); startAuto(); });
 
-  /* ── 7. Auto-play ── */
   function startAuto() {
     stopAuto();
     autoTimer = setInterval(function() { goTo(current + 1); }, AUTO_DELAY);
@@ -461,7 +426,6 @@ function initTestiSlider() {
     if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
   }
 
-  /* Pause saat hover/touch */
   wrap.addEventListener('mouseenter', function() {
     stopAuto();
     if (progressBar) progressBar.style.animationPlayState = 'paused';
@@ -471,11 +435,8 @@ function initTestiSlider() {
     if (progressBar) progressBar.style.animationPlayState = 'running';
   });
   wrap.addEventListener('touchstart', stopAuto, { passive: true });
-  wrap.addEventListener('touchend',   function() {
-    setTimeout(startAuto, 800);
-  }, { passive: true });
+  wrap.addEventListener('touchend', function() { setTimeout(startAuto, 800); }, { passive: true });
 
-  /* ── 8. Touch swipe ── */
   var tStartX = 0, tDeltaX = 0;
   track.addEventListener('touchstart', function(e) {
     tStartX = e.changedTouches[0].screenX; tDeltaX = 0;
@@ -485,18 +446,14 @@ function initTestiSlider() {
   }, { passive: true });
   track.addEventListener('touchend', function() {
     if (Math.abs(tDeltaX) > 50) {
-      stopAuto();
-      goTo(tDeltaX < 0 ? current + 1 : current - 1);
-      startAuto();
+      stopAuto(); goTo(tDeltaX < 0 ? current + 1 : current - 1); startAuto();
     }
   }, { passive: true });
 
-  /* ── 9. Mouse drag ── */
   var isDragging = false, dragStartX = 0, dragDeltaX = 0;
   wrap.addEventListener('mousedown', function(e) {
     isDragging = true; dragStartX = e.clientX; dragDeltaX = 0;
-    track.style.transition = 'none'; wrap.style.cursor = 'grabbing';
-    stopAuto();
+    track.style.transition = 'none'; wrap.style.cursor = 'grabbing'; stopAuto();
   });
   window.addEventListener('mousemove', function(e) {
     if (!isDragging) return;
@@ -516,23 +473,23 @@ function initTestiSlider() {
     if (Math.abs(dragDeltaX) > 5) e.preventDefault();
   });
 
-  /* ── 10. Resize ── */
   var resizeTimer = null;
   window.addEventListener('resize', function() {
     if (resizeTimer) clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function() {
-      renderDots();
-      jumpTo(current);
-      resizeTimer = null;
+      renderDots(); jumpTo(current); resizeTimer = null;
     }, 150);
   });
 
-  /* ── 11. Init ── */
   renderDots();
-  jumpTo(total); // mulai di slide asli pertama
+  jumpTo(total);
   startAuto();
 }
 
+
+/* ============================================
+   SMOOTH SCROLL
+   ============================================ */
 function initSmoothScroll() {
   var anchors = document.querySelectorAll('a[href^="#"]');
   for (var i = 0; i < anchors.length; i++) {
@@ -549,6 +506,7 @@ function initSmoothScroll() {
   }
 }
 
+
 /* ============================================
    GALLERY TOUCH — overlay on tap (mobile)
    ============================================ */
@@ -556,23 +514,12 @@ function initGalleryTouch() {
   var items = document.querySelectorAll('.gallery-item');
   if (!items.length) return;
 
-  var isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-
-  if (isTouch) {
-    /* tidak ada hint, cukup overlay saja */
-  }
-
   for (var j = 0; j < items.length; j++) {
     (function(item) {
       item.addEventListener('touchend', function(e) {
         var wasTapped = item.classList.contains('tapped');
-        for (var k = 0; k < items.length; k++) {
-          items[k].classList.remove('tapped');
-        }
-        if (!wasTapped) {
-          item.classList.add('tapped');
-          e.preventDefault();
-        }
+        for (var k = 0; k < items.length; k++) items[k].classList.remove('tapped');
+        if (!wasTapped) { item.classList.add('tapped'); e.preventDefault(); }
       }, { passive: false });
     }(items[j]));
   }
@@ -582,10 +529,6 @@ function initGalleryTouch() {
     for (var i = 0; i < items.length; i++) {
       if (items[i].contains(e.target)) { inside = true; break; }
     }
-    if (!inside) {
-      for (var j = 0; j < items.length; j++) {
-        items[j].classList.remove('tapped');
-      }
-    }
+    if (!inside) for (var j = 0; j < items.length; j++) items[j].classList.remove('tapped');
   }, { passive: true });
 }

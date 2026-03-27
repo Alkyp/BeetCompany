@@ -12,32 +12,39 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Stylesheet -->
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main1.css') }}" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/modal.css') }}" />
 </head>
 <body>
 
 <!-- ══════════ NAVBAR ══════════ -->
 <nav id="navbar">
   <a href="{{ url_for('index') }}" class="nav-logo">
-      <img src="{{ url_for('static', filename='img/Logo beets crimson.png') }}" 
-          alt="Beet Center Indonesia" 
-          class="logo-img">
+    <img src="{{ url_for('static', filename='img/Logo beets crimson.png') }}"
+         alt="Beet Center Indonesia"
+         class="logo-img">
   </a>
-  
+
   <ul class="nav-links">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#background">Background</a></li>
-    <li><a href="#benefits">Benefits</a></li>
-    <li><a href="#visi">Visi &amp; Misi</a></li>
-    <li><a href="#product">Product</a></li>
-    <li><a href="#center">Center</a></li>
-    <li><a href="#testimoni">Testimoni</a></li>
-    <li><a href="#contact" class="btn-contact">Contact</a></li>
+    <li><a href="#home"       data-i18n="nav.home">Home</a></li>
+    <li><a href="#about"      data-i18n="nav.about">Tentang</a></li>
+    <li><a href="#background" data-i18n="nav.background">Latar Belakang</a></li>
+    <li><a href="#benefits"   data-i18n="nav.benefits">Manfaat</a></li>
+    <li><a href="#visi"       data-i18n="nav.visi">Visi &amp; Misi</a></li>
+    <li><a href="#product"    data-i18n="nav.product">Produk</a></li>
+    <li><a href="#center"     data-i18n="nav.center">Center</a></li>
+    <li><a href="#testimoni"  data-i18n="nav.testimoni">Testimoni</a></li>
+    <li><a href="#contact"    class="btn-contact" data-i18n="nav.contact">Kontak</a></li>
   </ul>
+
+  <!-- Language Toggle -->
+  <div class="lang-toggle" id="langToggle">
+    <button class="lang-btn active" data-lang-btn="id">ID</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn" data-lang-btn="en">EN</button>
+  </div>
+
   <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -45,47 +52,123 @@
 
 <!-- Mobile Nav Overlay -->
 <div class="mobile-nav" id="mobileNav">
-  <a href="#home"       class="mobile-link">Home</a>
-  <a href="#about"      class="mobile-link">About</a>
-  <a href="#background" class="mobile-link">Background</a>
-  <a href="#benefits"   class="mobile-link">Benefits</a>
-  <a href="#visi"       class="mobile-link">Visi &amp; Misi</a>
-  <a href="#product"    class="mobile-link">Product</a>
-  <a href="#center"     class="mobile-link">Center</a>
-  <a href="#testimoni"  class="mobile-link">Testimoni</a>
-  <a href="#contact"    class="mobile-link btn-contact-m">Contact</a>
+  <a href="#home"       class="mobile-link" data-i18n="nav.home">Home</a>
+  <a href="#about"      class="mobile-link" data-i18n="nav.about">Tentang</a>
+  <a href="#background" class="mobile-link" data-i18n="nav.background">Latar Belakang</a>
+  <a href="#benefits"   class="mobile-link" data-i18n="nav.benefits">Manfaat</a>
+  <a href="#visi"       class="mobile-link" data-i18n="nav.visi">Visi &amp; Misi</a>
+  <a href="#product"    class="mobile-link" data-i18n="nav.product">Produk</a>
+  <a href="#center"     class="mobile-link" data-i18n="nav.center">Center</a>
+  <a href="#testimoni"  class="mobile-link" data-i18n="nav.testimoni">Testimoni</a>
+  <a href="#contact"    class="mobile-link btn-contact-m" data-i18n="nav.contact">Kontak</a>
+  <!-- Mobile Language Toggle -->
+  <div class="mobile-lang">
+    <button class="lang-btn active" data-lang-btn="id">🇮🇩 Indonesia</button>
+    <button class="lang-btn" data-lang-btn="en">🇺🇸 English</button>
+  </div>
 </div>
 
 
 <!-- ══════════ HERO ══════════ -->
 <section id="home">
+  <!-- Dot pattern overlay -->
   <div class="hero-bg-pattern"></div>
+  <!-- Radial glow -->
   <div class="hero-glow"></div>
+  <!-- Decorative PNG background image (right side, semi-transparent) -->
+  <div class="hero-bg-img" aria-hidden="true">
+    <img src="{{ url_for('static', filename='img/beetroot-removebg-preview.png') }}" alt="" class="hero-bg-beet">
+  </div>
+
   <div class="hero-content container">
-    <div>
-      <div class="hero-tag fade-in">🌿 BCI — From Nature to Future.</div>
-      <h1 class="hero-title fade-in">Fuel At Your <em>Fingertips</em></h1>
-      <p class="hero-desc fade-in">Superfood berbasis buah bit berkualitas tinggi dari pegunungan Indonesia, diolah higienis untuk mendukung gaya hidup sehat Anda.</p>
+    <!-- Text column -->
+    <div class="hero-text">
+      <div class="hero-tag fade-in" data-i18n="hero.tag">🌿 BCI — From Nature to Future.</div>
+      <h1 class="hero-title fade-in" data-i18n="hero.title">Fuel At Your <em>Fingertips</em></h1>
+      <p class="hero-desc fade-in" data-i18n="hero.desc">Superfood berbasis buah bit berkualitas tinggi dari pegunungan Indonesia, diolah higienis untuk mendukung gaya hidup sehat Anda.</p>
       <div class="hero-btns fade-in">
-        <a href="#product" class="btn-primary">Lihat Produk</a>
-        <button id="btnVideoModal" class="btn-outline"
-                style="color: black; display: inline-flex; align-items: center; gap: 8px;">
-          <div class="play-icon" style="color: black;">▶</div>
-          Pelajari Lebih
-        </button>
+        <a href="#product" class="btn-primary" data-i18n="hero.btn.product">Lihat Produk</a>
+        <a href="#video" class="btn-outline" style="color:#fff; border-color:rgba(255,255,255,.4);">
+          <div class="play-icon">▶</div>
+          <span data-i18n="video.play">Putar Video</span>
+        </a>
       </div>
       <div class="hero-stats fade-in">
-        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Organik</div></div>
-        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Halal</div></div>
-        <div class="stat"><div class="stat-num">200+</div><div class="stat-label">Petani Lokal</div></div>
-        <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Mitra/Client</div></div>
-        <div class="stat"><div class="stat-num">1k+</div><div class="stat-label">Hasil Panen</div></div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label" data-i18n="hero.stat.organic">Organik</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label" data-i18n="hero.stat.halal">Halal</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">200+</div>
+          <div class="stat-label" data-i18n="hero.stat.petani">Petani Lokal</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">500+</div>
+          <div class="stat-label" data-i18n="hero.stat.mitra">Mitra / Client</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1k+</div>
+          <div class="stat-label" data-i18n="hero.stat.panen">Hasil Panen</div>
+        </div>
       </div>
     </div>
+
+    <!-- Visual column — static, no orbit -->
     <div class="hero-visual">
       <div class="hero-circle">
-        <img src="{{ url_for('static', filename='img/beetroot-removebg-preview.png') }}" alt="Beet" class="hero-beet-img">
-        <div class="hero-orbit"><div class="hero-orbit-dot"></div></div>
+        <img src="{{ url_for('static', filename='img/beetroot-removebg-preview.png') }}"
+             alt="Beet"
+             class="hero-beet-img">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ VIDEO SECTION ══════════ -->
+<section id="video">
+  <div class="container">
+    <div class="video-header fade-in">
+      <div class="section-tag" data-i18n="video.tag">Profil Kami</div>
+      <h2 class="section-title" data-i18n="video.title">Kenali Lebih Dekat <span>BCI</span></h2>
+      <div class="divider" style="margin:20px auto;"></div>
+      <p class="section-desc" style="margin:0 auto;" data-i18n="video.desc">Saksikan perjalanan kami — dari ladang bit di pegunungan Indonesia hingga produk superfood berkualitas tinggi yang sampai ke tangan Anda.</p>
+    </div>
+
+    <!-- Video Player — lazy load, tidak muat sebelum diklik -->
+    <div class="video-player-wrap fade-in" id="videoPlayerWrap">
+      <!-- Thumbnail (tampil dulu sebelum play) -->
+      <div class="video-thumb" id="videoThumb">
+        <img
+          src="https://img.youtube.com/vi/59S1IIoFhDM/maxresdefault.jpg"
+          alt="Beet Center Indonesia — Video Profil"
+          class="video-thumb-img"
+          loading="lazy"
+        />
+        <!-- Overlay gelap -->
+        <div class="video-thumb-overlay"></div>
+        <!-- Tombol Play -->
+        <button class="video-play-btn" id="videoPlayBtn" aria-label="Putar Video">
+          <span class="video-play-icon">▶</span>
+        </button>
+        <!-- Hint text -->
+        <p class="video-hint" data-i18n="video.hint">Klik tombol putar untuk menonton</p>
+      </div>
+
+      <!-- iframe — hanya muncul setelah diklik -->
+      <div class="video-frame-wrap" id="videoFrameWrap" style="display:none;">
+        <iframe
+          id="videoFrame"
+          src=""
+          title="Beet Center Indonesia"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen>
+        </iframe>
       </div>
     </div>
   </div>
@@ -100,36 +183,32 @@
         <div class="about-img-main">
           <img src="{{ url_for('static', filename='img/compressed_IMG_0106.JPG') }}" alt="Beet Farm" loading="lazy">
         </div>
-        <!--<div class="about-badge">
-          <div class="num">2024</div>
-          <div class="lbl">Berdiri Sejak</div>
-        </div>-->
       </div>
       <div class="fade-in-right">
-        <div class="section-tag">Tentang Kami</div>
-        <h2 class="section-title">Beet Center <span>Indonesia</span></h2>
+        <div class="section-tag" data-i18n="about.tag">Tentang Kami</div>
+        <h2 class="section-title" data-i18n="about.title">Beet Center <span>Indonesia</span></h2>
         <div class="divider"></div>
-        <p class="section-desc">Beet Center Indonesia merupakan perusahaan agroindustri umbi bit  yang mengembangkan, membudidayakan, dan menghilirisasikan umbi bit lokal berkualitas tinggi melalui kemitraan dengan petani serta inovasi riset terapan untuk menghasilkan produk pangan fungsional dan bahan baku industri yang berkelanjutan dan berdaya saing nasional maupun internasional.</p>
+        <p class="section-desc" data-i18n="about.desc">Beet Center Indonesia merupakan perusahaan agroindustri umbi bit yang mengembangkan, membudidayakan, dan menghilirisasikan umbi bit lokal berkualitas tinggi melalui kemitraan dengan petani serta inovasi riset terapan untuk menghasilkan produk pangan fungsional dan bahan baku industri yang berkelanjutan dan berdaya saing nasional maupun internasional.</p>
         <div class="about-features">
           <div class="feature-item">
             <div class="feature-icon">🌿</div>
             <div class="feature-text">
-              <h4>100% Bahan Alami</h4>
-              <p>Dipilih dari ladang terbaik di pegunungan Indonesia tanpa bahan sintetis</p>
+              <h4 data-i18n="about.f1.title">100% Bahan Alami</h4>
+              <p data-i18n="about.f1.desc">Dipilih dari ladang terbaik di pegunungan Indonesia tanpa bahan sintetis</p>
             </div>
           </div>
           <div class="feature-item">
             <div class="feature-icon">🏭</div>
             <div class="feature-text">
-              <h4>Proses Higienis &amp; Terstandar</h4>
-              <p>Produksi berstandar tinggi menjaga kandungan nutrisi alami tetap utuh</p>
+              <h4 data-i18n="about.f2.title">Proses Higienis &amp; Terstandar</h4>
+              <p data-i18n="about.f2.desc">Produksi berstandar tinggi menjaga kandungan nutrisi alami tetap utuh</p>
             </div>
           </div>
           <div class="feature-item">
             <div class="feature-icon">💚</div>
             <div class="feature-text">
-              <h4>Gaya Hidup Sehat Modern</h4>
-              <p>Dirancang praktis untuk mendukung pola hidup sehat berkelanjutan</p>
+              <h4 data-i18n="about.f3.title">Gaya Hidup Sehat Modern</h4>
+              <p data-i18n="about.f3.desc">Dirancang praktis untuk mendukung pola hidup sehat berkelanjutan</p>
             </div>
           </div>
         </div>
@@ -144,11 +223,11 @@
   <div class="container">
     <div class="bg-grid">
       <div class="bg-content fade-in-left">
-        <div class="section-tag">Latar Belakang</div>
-        <h2 class="section-title">Mengapa <span>Buah Bit?</span></h2>
+        <div class="section-tag" data-i18n="bg.tag">Latar Belakang</div>
+        <h2 class="section-title" data-i18n="bg.title">Mengapa <span>Buah Bit?</span></h2>
         <div class="divider"></div>
-        <p class="section-desc" style="max-width:100%;">Meningkatnya kesadaran masyarakat terhadap pentingnya gaya hidup sehat mendorong kebutuhan akan produk pangan yang tidak hanya mengenyangkan, tetapi juga memberikan manfaat kesehatan jangka panjang.</p>
-        <p class="section-desc" style="max-width:100%; margin-top:16px;">Melihat kondisi tersebut, CV. Agro Sehat Nusantara hadir sebagai solusi dengan menghadirkan produk berbasis buah bit (beetroot) — superfood kaya antioksidan, vitamin, dan mineral penting yang diolah menjadi produk fungsional praktis sehari-hari tanpa menghilangkan khasiat alaminya.</p>
+        <p class="section-desc" style="max-width:100%;" data-i18n="bg.p1">Meningkatnya kesadaran masyarakat terhadap pentingnya gaya hidup sehat mendorong kebutuhan akan produk pangan yang tidak hanya mengenyangkan, tetapi juga memberikan manfaat kesehatan jangka panjang.</p>
+        <p class="section-desc" style="max-width:100%; margin-top:16px;" data-i18n="bg.p2">Melihat kondisi tersebut, CV. Agro Sehat Nusantara hadir sebagai solusi dengan menghadirkan produk berbasis buah bit (beetroot) — superfood kaya antioksidan, vitamin, dan mineral penting yang diolah menjadi produk fungsional praktis sehari-hari tanpa menghilangkan khasiat alaminya.</p>
       </div>
       <div class="bg-img fade-in-right">
         <img src="{{ url_for('static', filename='img/top-view-beets-table.jpg') }}" alt="Beetroot" loading="lazy" />
@@ -162,36 +241,36 @@
 <section id="benefits">
   <div class="container">
     <div class="benefits-header fade-in">
-      <div class="section-tag">Keunggulan Nutrisi</div>
-      <h2 class="section-title">Benefits of <span style="color:var(--accent)">Beetroot</span> </h2>
+      <div class="section-tag" data-i18n="benefits.tag">Keunggulan Nutrisi</div>
+      <h2 class="section-title" data-i18n="benefits.title">Benefits of <span style="color:var(--accent)">Beetroot</span></h2>
       <div class="divider"></div>
-      <p class="section-desc" style="margin:0 auto;">Buah bit mengandung nutrisi jauh lebih tinggi dibanding sayuran populer lainnya</p>
+      <p class="section-desc" style="margin:0 auto;" data-i18n="benefits.desc">Buah bit mengandung nutrisi jauh lebih tinggi dibanding sayuran populer lainnya</p>
     </div>
     <div class="benefits-grid">
       <div class="benefit-card fade-in">
         <div class="benefit-num">2<span class="benefit-unit">x</span></div>
-        <div class="benefit-label">Karotenoid</div>
-        <div class="benefit-sub">vs. Wortel</div>
+        <div class="benefit-label" data-i18n="benefit.label.1">Karotenoid</div>
+        <div class="benefit-sub" data-i18n="benefit.sub.1">vs. Wortel</div>
       </div>
       <div class="benefit-card fade-in">
         <div class="benefit-num">15<span class="benefit-unit">x</span></div>
-        <div class="benefit-label">Potasium</div>
-        <div class="benefit-sub">vs. Pisang</div>
+        <div class="benefit-label" data-i18n="benefit.label.2">Potasium</div>
+        <div class="benefit-sub" data-i18n="benefit.sub.2">vs. Pisang</div>
       </div>
       <div class="benefit-card fade-in">
         <div class="benefit-num">14<span class="benefit-unit">x</span></div>
-        <div class="benefit-label">Zat Besi</div>
-        <div class="benefit-sub">vs. Bayam</div>
+        <div class="benefit-label" data-i18n="benefit.label.3">Zat Besi</div>
+        <div class="benefit-sub" data-i18n="benefit.sub.3">vs. Bayam</div>
       </div>
       <div class="benefit-card fade-in">
         <div class="benefit-num">10<span class="benefit-unit">x</span></div>
-        <div class="benefit-label">Antioksidan</div>
-        <div class="benefit-sub">vs. Strawberry</div>
+        <div class="benefit-label" data-i18n="benefit.label.4">Antioksidan</div>
+        <div class="benefit-sub" data-i18n="benefit.sub.4">vs. Strawberry</div>
       </div>
       <div class="benefit-card fade-in">
         <div class="benefit-num">25<span class="benefit-unit">x</span></div>
-        <div class="benefit-label">Asam Folat</div>
-        <div class="benefit-sub">vs. Alpukat</div>
+        <div class="benefit-label" data-i18n="benefit.label.5">Asam Folat</div>
+        <div class="benefit-sub" data-i18n="benefit.sub.5">vs. Alpukat</div>
       </div>
     </div>
   </div>
@@ -202,26 +281,26 @@
 <section id="visi">
   <div class="container">
     <div style="text-align:center;" class="fade-in">
-      <div class="section-tag">Arah Perusahaan</div>
-      <h2 class="section-title">Visi <span>&amp; Misi</span></h2>
+      <div class="section-tag" data-i18n="visi.tag">Arah Perusahaan</div>
+      <h2 class="section-title" data-i18n="visi.title">Visi <span>&amp; Misi</span></h2>
       <div class="divider" style="margin:16px auto;"></div>
     </div>
     <div class="vm-grid">
       <div class="vm-card vision fade-in-left">
-        <div class="vm-icon"></div>
-        <h3>Visi Kami</h3>
-        <p>Menjadi Pusat Agribisnis umbi bit Organik Terintegrasi Terbesar di Indonesia yang menjadi Rujukan Nasional dalam Produksi, Inovasi, dan Pengembangan Ekosistem Umbi bit berkelanjutan dari Hulu hingga Hilir.</p>
+        <div class="vm-icon">🎯</div>
+        <h3 data-i18n="visi.vision.title">Visi Kami</h3>
+        <p data-i18n="visi.vision.text">Menjadi Pusat Agribisnis umbi bit Organik Terintegrasi Terbesar di Indonesia yang menjadi Rujukan Nasional dalam Produksi, Inovasi, dan Pengembangan Ekosistem Umbi bit berkelanjutan dari Hulu hingga Hilir.</p>
       </div>
       <div class="vm-card mission fade-in-right">
-        <div class="vm-icon" style="color:var(--primary)"></div>
-        <h3>Misi Kami</h3>
+        <div class="vm-icon" style="color:var(--primary)">🚀</div>
+        <h3 data-i18n="visi.mission.title">Misi Kami</h3>
         <ul class="mission-list">
-          <li>Mengembangkan budidaya beet organik terintegrasi melalui sistem pertanian modern dan berkelanjutan bersama petani mitra di berbagai wilayah Indonesia.</li>
-          <li>Membangun ekosistem agribisnis beet dari hulu hingga hilir, mulai dari produksi, pengolahan, distribusi, hingga pemasaran nasional dan ekspor.</li>
-          <li>Meningkatkan kesejahteraan petani beet melalui kemitraan yang adil, peningkatan produktivitas, dan nilai tambah produk.</li>
-          <li>Menjadi pusat riset, inovasi, dan pengembangan varietas beet unggulan yang mendukung industri pangan, kesehatan, dan herbal nasional.</li>
-          <li>Menghasilkan produk beet berkualitas tinggi dan tersertifikasi (organik, halal, dan keamanan pangan) untuk memenuhi pasar nasional dan global.</li>
-          <li>Mendorong pertanian berkelanjutan dan ramah lingkungan melalui pemanfaatan limbah pertanian, teknologi pertanian, dan praktik pertanian organik terpadu.</li>
+          <li data-i18n="visi.m1">Mengembangkan budidaya beet organik terintegrasi melalui sistem pertanian modern dan berkelanjutan bersama petani mitra di berbagai wilayah Indonesia.</li>
+          <li data-i18n="visi.m2">Membangun ekosistem agribisnis beet dari hulu hingga hilir, mulai dari produksi, pengolahan, distribusi, hingga pemasaran nasional dan ekspor.</li>
+          <li data-i18n="visi.m3">Meningkatkan kesejahteraan petani beet melalui kemitraan yang adil, peningkatan produktivitas, dan nilai tambah produk.</li>
+          <li data-i18n="visi.m4">Menjadi pusat riset, inovasi, dan pengembangan varietas beet unggulan yang mendukung industri pangan, kesehatan, dan herbal nasional.</li>
+          <li data-i18n="visi.m5">Menghasilkan produk beet berkualitas tinggi dan tersertifikasi (organik, halal, dan keamanan pangan) untuk memenuhi pasar nasional dan global.</li>
+          <li data-i18n="visi.m6">Mendorong pertanian berkelanjutan dan ramah lingkungan melalui pemanfaatan limbah pertanian, teknologi pertanian, dan praktik pertanian organik terpadu.</li>
         </ul>
       </div>
     </div>
@@ -233,8 +312,8 @@
 <section id="product">
   <div class="container">
     <div class="product-header fade-in">
-      <div class="section-tag">Produk Unggulan</div>
-      <h2 class="section-title">Pilihan <span>Produk</span> Kami</h2>
+      <div class="section-tag" data-i18n="product.tag">Produk Unggulan</div>
+      <h2 class="section-title" data-i18n="product.title">Pilihan <span>Produk</span> Kami</h2>
       <div class="divider"></div>
     </div>
     <div class="slider-wrap fade-in">
@@ -248,9 +327,9 @@
               <div class="product-emoji">🧃</div>
             </div>
             <div class="product-info">
-              <div class="product-tag-pill">Best Seller</div>
-              <h3 class="product-name">Sari Buah Bit Murni</h3>
-              <p class="product-desc">Minuman segar dari perasan buah bit pilihan pegunungan, kaya antioksidan dan vitamin alami tanpa tambahan gula atau pengawet.</p>
+              <div class="product-tag-pill" data-i18n="product.p1.tag">Best Seller</div>
+              <h3 class="product-name" data-i18n="product.p1.name">Sari Buah Bit Murni</h3>
+              <p class="product-desc" data-i18n="product.p1.desc">Minuman segar dari perasan buah bit pilihan pegunungan, kaya antioksidan dan vitamin alami tanpa tambahan gula atau pengawet.</p>
               <div class="product-features">
                 <div class="pf-item">Cold-press, nutrisi terjaga</div>
                 <div class="pf-item">Bebas gula tambahan</div>
@@ -258,7 +337,7 @@
               </div>
               <div class="product-price">Rp 45.000 <span>/ botol</span></div>
               <div class="product-actions">
-                <a href="#contact" class="btn-buy">Pesan Sekarang</a>
+                <a href="#contact" class="btn-buy" data-i18n="product.order">Pesan Sekarang</a>
                 <a href="#" class="btn-shopee">🛒 Shopee</a>
               </div>
             </div>
@@ -273,9 +352,9 @@
               <div class="product-emoji">🫙</div>
             </div>
             <div class="product-info">
-              <div class="product-tag-pill">New Arrival</div>
-              <h3 class="product-name">Bubuk Bit Premium</h3>
-              <p class="product-desc">Bubuk buah bit kering sempurna melalui proses spray-dry berteknologi tinggi, mempertahankan 95% nutrisi aktif untuk campuran smoothie, kue, dan minuman.</p>
+              <div class="product-tag-pill" data-i18n="product.p2.tag">New Arrival</div>
+              <h3 class="product-name" data-i18n="product.p2.name">Bubuk Bit Premium</h3>
+              <p class="product-desc" data-i18n="product.p2.desc">Bubuk buah bit kering sempurna melalui proses spray-dry berteknologi tinggi, mempertahankan 95% nutrisi aktif untuk campuran smoothie, kue, dan minuman.</p>
               <div class="product-features">
                 <div class="pf-item">Spray-dried technology</div>
                 <div class="pf-item">95% nutrisi terjaga</div>
@@ -283,7 +362,7 @@
               </div>
               <div class="product-price">Rp 85.000 <span>/ pack</span></div>
               <div class="product-actions">
-                <a href="#contact" class="btn-buy">Pesan Sekarang</a>
+                <a href="#contact" class="btn-buy" data-i18n="product.order">Pesan Sekarang</a>
                 <a href="#" class="btn-shopee">🛒 Shopee</a>
               </div>
             </div>
@@ -298,9 +377,9 @@
               <div class="product-emoji">🥗</div>
             </div>
             <div class="product-info">
-              <div class="product-tag-pill">Populer</div>
-              <h3 class="product-name">Healthy Salad Kit</h3>
-              <p class="product-desc">Paket salad sehat siap saji dengan bit segar pilihan, sayuran organik, dan dressing spesial berbahan alami. Segar, lezat, dan bergizi tinggi.</p>
+              <div class="product-tag-pill" data-i18n="product.p3.tag">Populer</div>
+              <h3 class="product-name" data-i18n="product.p3.name">Healthy Salad Kit</h3>
+              <p class="product-desc" data-i18n="product.p3.desc">Paket salad sehat siap saji dengan bit segar pilihan, sayuran organik, dan dressing spesial berbahan alami. Segar, lezat, dan bergizi tinggi.</p>
               <div class="product-features">
                 <div class="pf-item">Sayuran organik segar</div>
                 <div class="pf-item">Dressing alami bebas MSG</div>
@@ -308,7 +387,7 @@
               </div>
               <div class="product-price">Rp 35.000 <span>/ pack</span></div>
               <div class="product-actions">
-                <a href="#contact" class="btn-buy">Pesan Sekarang</a>
+                <a href="#contact" class="btn-buy" data-i18n="product.order">Pesan Sekarang</a>
                 <a href="#" class="btn-shopee">🛒 Shopee</a>
               </div>
             </div>
@@ -323,9 +402,9 @@
               <div class="product-emoji">💊</div>
             </div>
             <div class="product-info">
-              <div class="product-tag-pill">Premium</div>
-              <h3 class="product-name">Kapsul Ekstrak Bit</h3>
-              <p class="product-desc">Suplemen kapsul dari ekstrak buah bit terkonsentrasi, cocok untuk Anda yang aktif dan ingin mendapatkan manfaat superfood secara praktis kapanpun dan dimanapun.</p>
+              <div class="product-tag-pill" data-i18n="product.p4.tag">Premium</div>
+              <h3 class="product-name" data-i18n="product.p4.name">Kapsul Ekstrak Bit</h3>
+              <p class="product-desc" data-i18n="product.p4.desc">Suplemen kapsul dari ekstrak buah bit terkonsentrasi, cocok untuk Anda yang aktif dan ingin mendapatkan manfaat superfood secara praktis kapanpun dan dimanapun.</p>
               <div class="product-features">
                 <div class="pf-item">Ekstrak terkonsentrasi 10:1</div>
                 <div class="pf-item">60 kapsul per botol</div>
@@ -333,7 +412,7 @@
               </div>
               <div class="product-price">Rp 150.000 <span>/ botol</span></div>
               <div class="product-actions">
-                <a href="#contact" class="btn-buy">Pesan Sekarang</a>
+                <a href="#contact" class="btn-buy" data-i18n="product.order">Pesan Sekarang</a>
                 <a href="#" class="btn-shopee">🛒 Shopee</a>
               </div>
             </div>
@@ -356,10 +435,10 @@
 <section id="center">
   <div class="container">
     <div class="gallery-header fade-in">
-      <div class="section-tag">Pusat Kami</div>
-      <h2 class="section-title">Fasilitas <span>&amp; Galeri</span></h2>
+      <div class="section-tag" data-i18n="center.tag">Pusat Kami</div>
+      <h2 class="section-title" data-i18n="center.title">Fasilitas <span>&amp; Galeri</span></h2>
       <div class="divider"></div>
-      <p class="section-desc" style="margin:0 auto;">Dikelola langsung dari jantung pegunungan Indonesia dengan standar produksi terbaik</p>
+      <p class="section-desc" style="margin:0 auto;" data-i18n="center.desc">Dikelola langsung dari jantung pegunungan Indonesia dengan standar produksi terbaik</p>
     </div>
     <div class="gallery-grid" id="galleryGrid">
       <div class="gallery-item fade-in">
@@ -405,14 +484,13 @@
 <!-- ══════════ CLIENTS & MITRA ══════════ -->
 <section id="clients">
   <div class="clients-header fade-in">
-    <div class="section-tag">Kepercayaan</div>
-    <h2 class="section-title">Client &amp; <span>Mitra Bisnis</span></h2>
+    <div class="section-tag" data-i18n="clients.tag">Kepercayaan</div>
+    <h2 class="section-title" data-i18n="clients.title">Client &amp; <span>Mitra Bisnis</span></h2>
     <div class="divider" style="margin:16px auto;"></div>
-    <p class="section-desc" style="margin:0 auto;">Dipercaya oleh berbagai mitra bisnis dan distributor terkemuka</p>
+    <p class="section-desc" style="margin:0 auto;" data-i18n="clients.desc">Dipercaya oleh berbagai mitra bisnis dan distributor terkemuka</p>
   </div>
   <div class="marquee-wrap">
     <div class="marquee-track" id="marqueeTrack">
-      <!-- Set 1 -->
       <div class="client-logo"><div class="client-logo-box"><span class="icon">🏪</span><span class="name">Hero Supermarket</span></div></div>
       <div class="client-logo"><div class="client-logo-box"><span class="icon">🛒</span><span class="name">Hypermart</span></div></div>
       <div class="client-logo"><div class="client-logo-box"><span class="icon">🌿</span><span class="name">Organic Farm ID</span></div></div>
@@ -421,7 +499,6 @@
       <div class="client-logo"><div class="client-logo-box"><span class="icon">🍽️</span><span class="name">Healthy Kitchen</span></div></div>
       <div class="client-logo"><div class="client-logo-box"><span class="icon">📦</span><span class="name">JNE Express</span></div></div>
       <div class="client-logo"><div class="client-logo-box"><span class="icon">🏥</span><span class="name">Klinik Sehat</span></div></div>
-      <!-- Set 2 (duplicate for seamless loop) -->
       <div class="client-logo"><div class="client-logo-box"><span class="icon">🏪</span><span class="name">Hero Supermarket</span></div></div>
       <div class="client-logo"><div class="client-logo-box"><span class="icon">🛒</span><span class="name">Hypermart</span></div></div>
       <div class="client-logo"><div class="client-logo-box"><span class="icon">🌿</span><span class="name">Organic Farm ID</span></div></div>
@@ -439,12 +516,11 @@
 <section id="testimoni">
   <div class="container">
     <div class="testi-header fade-in">
-      <div class="section-tag">Testimoni</div>
-      <h2 class="section-title">Apa Kata <span>Pelanggan</span> Kami</h2>
+      <div class="section-tag" data-i18n="testi.tag">Testimoni</div>
+      <h2 class="section-title" data-i18n="testi.title">Apa Kata <span>Pelanggan</span> Kami</h2>
       <div class="divider"></div>
     </div>
 
-    <!-- Slider wrapper -->
     <div class="testi-slider-wrap" id="testiWrap">
       <div class="testi-track" id="testiTrack">
 
@@ -541,7 +617,6 @@
       </div><!-- /.testi-track -->
     </div><!-- /.testi-slider-wrap -->
 
-    <!-- Controls -->
     <div class="testi-controls">
       <button class="testi-btn" id="testiPrev" aria-label="Sebelumnya">&#8592;</button>
       <div class="testi-dots" id="testiDots"></div>
@@ -560,28 +635,28 @@
   <div class="container">
     <div class="contact-grid">
       <div class="fade-in-left">
-        <h2 class="contact-info-title">Mari Bekerjasama Bersama Kami</h2>
-        <p class="contact-info-desc">Jangan ragu untuk menghubungi kami. Tim kami siap membantu kebutuhan bisnis Anda dengan solusi terbaik dan profesional.</p>
+        <h2 class="contact-info-title" data-i18n="contact.title">Mari Bekerjasama Bersama Kami</h2>
+        <p class="contact-info-desc" data-i18n="contact.desc">Jangan ragu untuk menghubungi kami. Tim kami siap membantu kebutuhan bisnis Anda dengan solusi terbaik dan profesional.</p>
         <div class="contact-items">
           <div class="contact-item">
             <div class="contact-item-icon">📍</div>
             <div class="contact-item-text">
-              <div class="contact-item-label">Alamat</div>
+              <div class="contact-item-label" data-i18n="contact.addr.label">Alamat</div>
               Jakarta, Indonesia
             </div>
           </div>
           <div class="contact-item">
             <div class="contact-item-icon">📞</div>
             <div class="contact-item-text">
-              <div class="contact-item-label">Telepon</div>
+              <div class="contact-item-label" data-i18n="contact.phone.label">Telepon</div>
               082121217307
             </div>
           </div>
           <div class="contact-item">
             <div class="contact-item-icon">✉️</div>
             <div class="contact-item-text">
-              <div class="contact-item-label">Email</div>
-              <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bed7d0d8d1fedcdbdbcadddbd0cadbccd7d0dad1d0dbcdd7df90ddd1d3"><span class="__cf_email__" data-cfemail="3b52555d547b595e5e4f585e554f5e4915525f">[email&#160;protected]</span></a>
+              <div class="contact-item-label" data-i18n="contact.email.label">Email</div>
+              beetcenterindonesia@gmail.com
             </div>
           </div>
         </div>
@@ -589,23 +664,23 @@
       <div class="contact-form fade-in-right">
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Nama</label>
-            <input type="text"   class="form-input" id="formName"    placeholder="Nama Anda" />
+            <label class="form-label" data-i18n="contact.form.name">Nama</label>
+            <input type="text"  class="form-input" id="formName"    data-i18n-ph="contact.form.name.ph"    placeholder="Nama Anda" />
           </div>
           <div class="form-group">
-            <label class="form-label">Email</label>
-            <input type="email"  class="form-input" id="formEmail"   placeholder="email@anda.com" />
+            <label class="form-label" data-i18n="contact.form.email">Email</label>
+            <input type="email" class="form-input" id="formEmail"   data-i18n-ph="contact.form.email.ph"   placeholder="email@anda.com" />
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Subjek</label>
-          <input type="text"     class="form-input" id="formSubject" placeholder="Perihal pesan" />
+          <label class="form-label" data-i18n="contact.form.subject">Subjek</label>
+          <input type="text"   class="form-input" id="formSubject" data-i18n-ph="contact.form.subject.ph" placeholder="Perihal pesan" />
         </div>
         <div class="form-group">
-          <label class="form-label">Pesan</label>
-          <textarea              class="form-input" id="formMessage" placeholder="Tulis pesan Anda di sini..."></textarea>
+          <label class="form-label" data-i18n="contact.form.message">Pesan</label>
+          <textarea            class="form-input" id="formMessage" data-i18n-ph="contact.form.msg.ph"     placeholder="Tulis pesan Anda di sini..."></textarea>
         </div>
-        <button class="btn-submit" id="submitBtn">Kirim Pesan</button>
+        <button class="btn-submit" id="submitBtn" data-i18n="contact.form.submit">Kirim Pesan</button>
         <div class="form-msg" id="formMsg"></div>
       </div>
     </div>
@@ -615,36 +690,19 @@
 
 <!-- ══════════ FOOTER ══════════ -->
 <footer>
-  <p>© 2026 <span>Beet Center Indonesia</span> — CV. Agro Sehat Nusantara. Created by <span>Aldianto Dickyu Septian</span>. All Rights Reserved.</p>
+  <p data-i18n="footer.text">© 2026 <span>Beet Center Indonesia</span> — CV. Agro Sehat Nusantara. Created by <span>Aldianto Dickyu Septian</span>. All Rights Reserved.</p>
 </footer>
-
-<!-- ══════════ VIDEO MODAL ══════════ -->
-<div id="videoModal" class="vmodal-overlay" role="dialog" aria-modal="true" aria-label="Video Pelajari Lebih">
-  <div class="vmodal-box">
-    <button class="vmodal-close" id="videoModalClose" aria-label="Tutup video">&#10005;</button>
-    <div class="vmodal-iframe-wrap">
-      <iframe
-        id="videoModalFrame"
-        src=""
-        title="Beet Center Indonesia"
-        frameborder="0"
-        allow="autoplay; fullscreen; picture-in-picture"
-        allowfullscreen>
-      </iframe>
-    </div>
-  </div>
-</div>
 
 
 <!-- WA FLOAT -->
 <a href="https://wa.me/6282121217307" class="wa-btn" target="_blank" title="Chat WhatsApp">
   <svg viewBox="0 0 24 24">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z""/>
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
   </svg>
 </a>
 
 <!-- JavaScript -->
+<script src="{{ url_for('static', filename='js/lang.js') }}"></script>
 <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
-<script src="{{ url_for('static', filename='js/modal.js') }}" defer></script>
 </body>
 </html>
