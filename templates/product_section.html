@@ -1,0 +1,136 @@
+<!-- ══════════════════════════════════════════════════════════
+   PRODUCTS — WEB3 BRIGHT
+   Ganti seluruh <section id="product"> ... </section>
+   Tambahkan di <head>:
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/product_w3.css') }}" />
+════════════════════════════════════════════════════════════ -->
+
+<section id="product">
+  <div class="container">
+    <div class="product-header fade-in">
+      <div class="section-tag" data-i18n="product.tag">Produk Unggulan</div>
+      <h2 class="section-title" data-i18n="product.title">Pilihan <span>Produk</span> Kami</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="slider-wrap fade-in">
+      <div class="slider-track" id="sliderTrack">
+
+        <!-- ── Product 1 — Crimson Red ── -->
+        <div class="product-slide">
+          <div class="product-card">
+            <div class="product-visual" style="background:linear-gradient(145deg,#7b1232,#c9304a);">
+              <div class="pv-tag" data-i18n="product.p1.tag">Best Seller</div>
+              <div class="product-bg-circle" style="background:radial-gradient(circle,#ff6b8a,transparent);"></div>
+              <div class="product-emoji">🧃</div>
+            </div>
+            <div class="product-info">
+              <div class="product-tag-pill" data-i18n="product.p1.tag">Best Seller</div>
+              <h3 class="product-name" data-i18n="product.p1.name">Sari Buah Bit Murni</h3>
+              <p class="product-desc" data-i18n="product.p1.desc">Minuman segar dari perasan buah bit pilihan pegunungan, kaya antioksidan dan vitamin alami tanpa tambahan gula atau pengawet.</p>
+              <div class="product-features">
+                <div class="pf-item">Cold-press, nutrisi terjaga</div>
+                <div class="pf-item">Bebas gula tambahan</div>
+                <div class="pf-item">250ml &amp; 500ml</div>
+              </div>
+              <hr class="product-info-divider" />
+              <div class="product-price">Rp 45.000 <span>/ botol</span></div>
+              <div class="product-actions">
+                <a href="#contact" class="btn-buy" data-i18n="product.order">Pesan Sekarang</a>
+                <a href="#" class="btn-shopee">🛒 Shopee</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Product 2 — Violet Purple ── -->
+        <div class="product-slide">
+          <div class="product-card">
+            <div class="product-visual" style="background:linear-gradient(145deg,#3d1a6e,#7c3fcc);">
+              <div class="pv-tag" data-i18n="product.p2.tag">New Arrival</div>
+              <div class="product-bg-circle" style="background:radial-gradient(circle,#b07ef5,transparent);"></div>
+              <div class="product-emoji">🫙</div>
+            </div>
+            <div class="product-info">
+              <div class="product-tag-pill" data-i18n="product.p2.tag">New Arrival</div>
+              <h3 class="product-name" data-i18n="product.p2.name">Bubuk Bit Premium</h3>
+              <p class="product-desc" data-i18n="product.p2.desc">Bubuk buah bit kering sempurna melalui proses spray-dry berteknologi tinggi, mempertahankan 95% nutrisi aktif untuk campuran smoothie, kue, dan minuman.</p>
+              <div class="product-features">
+                <div class="pf-item">Spray-dried technology</div>
+                <div class="pf-item">95% nutrisi terjaga</div>
+                <div class="pf-item">100g &amp; 250g</div>
+              </div>
+              <hr class="product-info-divider" />
+              <div class="product-price">Rp 85.000 <span>/ pack</span></div>
+              <div class="product-actions">
+                <a href="#contact" class="btn-buy" data-i18n="product.order">Pesan Sekarang</a>
+                <a href="#" class="btn-shopee">🛒 Shopee</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Product 3 — Emerald Green ── -->
+        <div class="product-slide">
+          <div class="product-card">
+            <div class="product-visual" style="background:linear-gradient(145deg,#0d4a2a,#1a9952);">
+              <div class="pv-tag" data-i18n="product.p3.tag">Populer</div>
+              <div class="product-bg-circle" style="background:radial-gradient(circle,#5dffa8,transparent);"></div>
+              <div class="product-emoji">🥗</div>
+            </div>
+            <div class="product-info">
+              <div class="product-tag-pill" data-i18n="product.p3.tag">Populer</div>
+              <h3 class="product-name" data-i18n="product.p3.name">Healthy Salad Kit</h3>
+              <p class="product-desc" data-i18n="product.p3.desc">Paket salad sehat siap saji dengan bit segar pilihan, sayuran organik, dan dressing spesial berbahan alami. Segar, lezat, dan bergizi tinggi.</p>
+              <div class="product-features">
+                <div class="pf-item">Sayuran organik segar</div>
+                <div class="pf-item">Dressing bebas MSG</div>
+                <div class="pf-item">Porsi 1-2 orang</div>
+              </div>
+              <hr class="product-info-divider" />
+              <div class="product-price">Rp 35.000 <span>/ pack</span></div>
+              <div class="product-actions">
+                <a href="#contact" class="btn-buy" data-i18n="product.order">Pesan Sekarang</a>
+                <a href="#" class="btn-shopee">🛒 Shopee</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Product 4 — Amber Gold ── -->
+        <div class="product-slide">
+          <div class="product-card">
+            <div class="product-visual" style="background:linear-gradient(145deg,#5a3200,#c47a00);">
+              <div class="pv-tag" data-i18n="product.p4.tag">Premium</div>
+              <div class="product-bg-circle" style="background:radial-gradient(circle,#ffe066,transparent);"></div>
+              <div class="product-emoji">💊</div>
+            </div>
+            <div class="product-info">
+              <div class="product-tag-pill" data-i18n="product.p4.tag">Premium</div>
+              <h3 class="product-name" data-i18n="product.p4.name">Kapsul Ekstrak Bit</h3>
+              <p class="product-desc" data-i18n="product.p4.desc">Suplemen kapsul dari ekstrak buah bit terkonsentrasi, cocok untuk Anda yang aktif dan ingin mendapatkan manfaat superfood secara praktis kapanpun dan dimanapun.</p>
+              <div class="product-features">
+                <div class="pf-item">Ekstrak 10:1</div>
+                <div class="pf-item">60 kapsul / botol</div>
+                <div class="pf-item">Halal &amp; BPOM</div>
+              </div>
+              <hr class="product-info-divider" />
+              <div class="product-price">Rp 150.000 <span>/ botol</span></div>
+              <div class="product-actions">
+                <a href="#contact" class="btn-buy" data-i18n="product.order">Pesan Sekarang</a>
+                <a href="#" class="btn-shopee">🛒 Shopee</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /slider-track -->
+    </div><!-- /slider-wrap -->
+
+    <div class="slider-controls">
+      <button class="slider-btn" id="prevBtn">&#8592;</button>
+      <div class="slider-dots" id="sliderDots"></div>
+      <button class="slider-btn" id="nextBtn">&#8594;</button>
+    </div>
+  </div>
+</section>

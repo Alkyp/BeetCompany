@@ -1,0 +1,349 @@
+/* ═══════════════════════════════════════════════════════════════
+   PRODUCT SECTION — WEB3 BRIGHT & LIGHT
+   File: static/css/product_w3.css  (replace existing)
+═══════════════════════════════════════════════════════════════ */
+
+/* ────────────────────────────────────────────────────────────
+   1. SECTION BACKGROUND — cerah, hangat
+──────────────────────────────────────────────────────────── */
+#product {
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -10%,  #c9304a 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 90% 110%,  #d4af6a 0%, transparent 55%),
+    linear-gradient(160deg, #2d0514 0%, #4a0c22 55%, #2a0a18 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dot grid — satu elemen, ringan */
+#product::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,.08) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#product .container { position: relative; z-index: 1; }
+
+/* ────────────────────────────────────────────────────────────
+   2. HEADER
+──────────────────────────────────────────────────────────── */
+#product .product-header .section-tag {
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  color: #fce7a3;
+  letter-spacing: .16em;
+}
+#product .product-header .section-title { color: #fff; }
+#product .product-header .section-title span { color: #f5d27a; }
+#product .product-header .divider {
+  background: linear-gradient(90deg, transparent, rgba(245,210,122,.7), transparent);
+  height: 1px;
+  border: none;
+  width: 160px;
+  margin: 16px auto 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   3. CARD — satu blur, border solid, no animated gradient
+──────────────────────────────────────────────────────────── */
+#product .product-card {
+  background: rgba(255,255,255,.09);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.25);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  overflow: hidden;
+  position: relative;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s;
+  will-change: transform;
+}
+#product .product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 56px rgba(0,0,0,.35);
+  border-color: rgba(245,210,122,.45);
+}
+
+/* Top highlight bar — pengganti animated border */
+#product .product-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #f5d27a, #c9304a, transparent);
+  opacity: 0;
+  transition: opacity .3s;
+  z-index: 10;
+}
+#product .product-card:hover::before { opacity: 1; }
+
+#product .product-visual,
+#product .product-info { position: relative; z-index: 1; }
+
+/* ────────────────────────────────────────────────────────────
+   4. VISUAL PANEL
+──────────────────────────────────────────────────────────── */
+#product .product-visual {
+  width: 300px;
+  flex-shrink: 0;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ringan: overlay gelap tipis */
+#product .product-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.18);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Grid lines CSS-only */
+#product .product-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg,  transparent, transparent 30px, rgba(255,255,255,.04) 30px, rgba(255,255,255,.04) 31px),
+    repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(255,255,255,.04) 30px, rgba(255,255,255,.04) 31px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Glow blob — statis, bukan animasi terus menerus */
+#product .product-bg-circle {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: .6;
+  z-index: 3;
+  transition: opacity .3s;
+}
+#product .product-card:hover .product-bg-circle { opacity: .88; }
+
+/* Emoji — float HANYA saat hover */
+#product .product-emoji {
+  font-size: 5.5rem;
+  position: relative;
+  z-index: 4;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,.5));
+  transition: transform .4s cubic-bezier(.2,0,.2,1);
+  will-change: transform;
+}
+#product .product-card:hover .product-emoji {
+  transform: translateY(-8px) scale(1.05);
+}
+
+/* Badge sudut */
+#product .pv-tag {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 5;
+  background: rgba(0,0,0,.45);
+  border: 1px solid rgba(255,255,255,.2);
+  color: #f5d27a;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  padding: 4px 11px;
+  border-radius: 30px;
+}
+
+/* ────────────────────────────────────────────────────────────
+   5. INFO PANEL
+──────────────────────────────────────────────────────────── */
+#product .product-info {
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+#product .product-tag-pill {
+  background: rgba(245,210,122,.15);
+  border: 1px solid rgba(245,210,122,.35);
+  color: #f5d27a;
+  font-size: .67rem;
+  letter-spacing: .16em;
+  padding: 4px 13px;
+  border-radius: 30px;
+  margin-bottom: 12px;
+  width: fit-content;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+#product .product-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+
+#product .product-desc {
+  color: rgba(255,255,255,.68);
+  font-size: .875rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* Feature chips */
+#product .product-features {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 20px;
+}
+#product .pf-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: .76rem;
+  color: rgba(255,255,255,.82);
+  white-space: nowrap;
+}
+#product .pf-item::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #f5d27a;
+  flex-shrink: 0;
+}
+
+/* Divider */
+#product .product-info-divider {
+  height: 1px;
+  background: rgba(255,255,255,.1);
+  border: none;
+  margin: 4px 0 18px;
+}
+
+/* Price */
+#product .product-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f5d27a;
+  margin-bottom: 20px;
+  line-height: 1;
+}
+#product .product-price span {
+  font-size: .88rem;
+  font-weight: 400;
+  color: rgba(255,255,255,.45);
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* Buttons */
+#product .product-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+#product .btn-buy {
+  background: linear-gradient(135deg, #c9304a, #8F1B3A);
+  color: #fff;
+  padding: 11px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: .875rem;
+  border: 1px solid rgba(255,255,255,.2);
+  box-shadow: 0 4px 16px rgba(143,27,58,.5);
+  transition: transform .2s, box-shadow .2s;
+  text-decoration: none;
+  display: inline-block;
+}
+#product .btn-buy:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(143,27,58,.7);
+}
+#product .btn-shopee {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(238,77,45,.18);
+  border: 1px solid rgba(238,77,45,.4);
+  color: #ffb09e;
+  padding: 11px 16px;
+  border-radius: 30px;
+  font-size: .84rem;
+  font-weight: 500;
+  transition: background .2s;
+  text-decoration: none;
+}
+#product .btn-shopee:hover { background: rgba(238,77,45,.32); }
+
+/* ────────────────────────────────────────────────────────────
+   6. SLIDER CONTROLS
+──────────────────────────────────────────────────────────── */
+#product .slider-controls { margin-top: 36px; }
+#product .slider-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.2);
+  color: rgba(255,255,255,.85);
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+#product .slider-btn:hover {
+  background: rgba(201,48,74,.45);
+  border-color: rgba(201,48,74,.7);
+}
+#product .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.25);
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+#product .dot.active {
+  background: #f5d27a;
+  transform: scale(1.4);
+}
+
+/* ────────────────────────────────────────────────────────────
+   7. RESPONSIVE
+──────────────────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  #product .product-card { flex-direction: column; }
+  #product .product-visual { width: 100%; min-height: 200px; padding: 32px 0; }
+  #product .product-info { padding: 22px 18px 26px; }
+  #product .product-name { font-size: 1.55rem; }
+  #product .product-price { font-size: 1.7rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #product .product-card,
+  #product .product-emoji,
+  #product .product-card::before { transition: none; }
+}

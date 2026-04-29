@@ -35,11 +35,44 @@ function initNavbar() {
 
   var mobileLinks = mobileNav.querySelectorAll('.mobile-link');
 
-  function updateNavbar() {
-    navbar.classList.toggle('scrolled', window.scrollY > 20);
-    updateActiveNavLink();
+  /* ── Cache DOM queries once — avoid querySelectorAll on every scroll ── */
+  var sections      = document.querySelectorAll('section[id]');
+  var navLinks      = document.querySelectorAll('.nav-links a[href^="#"]');
+  var mobileNavLinks = document.querySelectorAll('.mobile-nav a[href^="#"]');
+  var sectionTops   = [];
+
+  function cacheSectionTops() {
+    sectionTops = [];
+    for (var i = 0; i < sections.length; i++) {
+      sectionTops[i] = sections[i].offsetTop;
+    }
   }
+
+  /* ── RAF throttle: scroll handler runs at most once per animation frame ── */
+  var rafPending = false;
+  function updateNavbar() {
+    if (rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(function () {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+      updateActiveNavLink();
+      rafPending = false;
+    });
+  }
+
   window.addEventListener('scroll', updateNavbar, { passive: true });
+
+  /* Re-cache section tops on resize (layout may shift) */
+  var resizeTimerNav = null;
+  window.addEventListener('resize', function () {
+    if (resizeTimerNav) clearTimeout(resizeTimerNav);
+    resizeTimerNav = setTimeout(function () {
+      cacheSectionTops();
+      resizeTimerNav = null;
+    }, 200);
+  }, { passive: true });
+
+  cacheSectionTops();
   updateNavbar();
 
   function openNav() {
@@ -68,29 +101,20 @@ function initNavbar() {
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && hamburger.classList.contains('open')) closeNav();
   });
-}
 
-function updateActiveNavLink() {
-  var sections    = document.querySelectorAll('section[id]');
-  var navLinks    = document.querySelectorAll('.nav-links a[href^="#"]');
-  var mobileLinks = document.querySelectorAll('.mobile-nav a[href^="#"]');
-  var current     = '';
-
-  for (var i = 0; i < sections.length; i++) {
-    if (window.scrollY >= sections[i].offsetTop - 100) {
-      current = sections[i].getAttribute('id');
+  /* ── Active nav link — uses cached arrays & pre-computed tops ── */
+  function updateActiveNavLink() {
+    var current = '';
+    var scrollY = window.scrollY;
+    for (var i = 0; i < sectionTops.length; i++) {
+      if (scrollY >= sectionTops[i] - 100) current = sections[i].getAttribute('id');
     }
-  }
-  for (var j = 0; j < navLinks.length; j++) {
-    navLinks[j].classList.remove('active');
-    if (navLinks[j].getAttribute('href') === '#' + current) {
-      navLinks[j].classList.add('active');
+    var hash = '#' + current;
+    for (var j = 0; j < navLinks.length; j++) {
+      navLinks[j].classList.toggle('active', navLinks[j].getAttribute('href') === hash);
     }
-  }
-  for (var k = 0; k < mobileLinks.length; k++) {
-    mobileLinks[k].classList.remove('active');
-    if (mobileLinks[k].getAttribute('href') === '#' + current) {
-      mobileLinks[k].classList.add('active');
+    for (var k = 0; k < mobileNavLinks.length; k++) {
+      mobileNavLinks[k].classList.toggle('active', mobileNavLinks[k].getAttribute('href') === hash);
     }
   }
 }
@@ -142,6 +166,9 @@ function initSlider() {
   var dotsContainer = document.getElementById('sliderDots');
 
   if (!track || !btnPrev || !btnNext || !dotsContainer) return;
+
+  /* Promote slider track to its own GPU layer */
+  track.style.willChange = 'transform';
 
   var slides  = track.querySelectorAll('.product-slide');
   var total   = slides.length;
@@ -249,6 +276,10 @@ function initScrollAnimations() {
     for (var i = 0; i < entries.length; i++) {
       if (entries[i].isIntersecting) {
         entries[i].target.classList.add('visible');
+        /* will-change: auto setelah animasi selesai — bebaskan GPU memory */
+        entries[i].target.addEventListener('transitionend', function () {
+          this.style.willChange = 'auto';
+        }, { once: true });
         observer.unobserve(entries[i].target);
       }
     }
@@ -350,6 +381,9 @@ function initTestiSlider() {
   var dotsEl  = document.getElementById('testiDots');
 
   if (!track || !btnPrev || !btnNext || !dotsEl) return;
+
+  /* Promote testi track to its own GPU layer */
+  track.style.willChange = 'transform';
 
   var origSlides = track.querySelectorAll('.testi-slide');
   var total      = origSlides.length;

@@ -1,0 +1,242 @@
+/* ═══════════════════════════════════════════════════════════════
+   HERO RIGHT — ENHANCED ANIMATIONS
+   File: static/css/hero_anim.css
+
+   Cara pakai:
+   Tambahkan di <head> setelah main1.css :
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/hero_anim.css') }}" />
+
+   Tidak mengubah file lain sama sekali.
+═══════════════════════════════════════════════════════════════ */
+
+
+/* ── 1. AKTIFKAN floatBeet yang sudah ada (tapi di-comment) ── */
+.hero-beet-img {
+  animation: floatBeet 7s ease-in-out infinite !important;
+}
+
+/* Reduce motion — hormati preferensi aksesibilitas */
+@media (prefers-reduced-motion: reduce) {
+  .hero-beet-img { animation: none !important; }
+  .hero-particle,
+  .hero-badge,
+  .hero-sparkle { animation: none !important; opacity: 0.7 !important; }
+}
+
+
+/* ── 2. PARTICLE DOTS melayang di sekitar lingkaran ── */
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* 6 partikel, berbeda ukuran & posisi */
+.hero-particle:nth-child(1) {
+  width: 8px; height: 8px;
+  background: rgba(212,175,106,.75);
+  top: 15%; left: 12%;
+  animation: particleDrift1 6s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(212,175,106,.5);
+}
+.hero-particle:nth-child(2) {
+  width: 5px; height: 5px;
+  background: rgba(255,255,255,.55);
+  top: 25%; right: 8%;
+  animation: particleDrift2 8s ease-in-out infinite;
+}
+.hero-particle:nth-child(3) {
+  width: 10px; height: 10px;
+  background: rgba(143,27,58,.7);
+  bottom: 28%; left: 8%;
+  animation: particleDrift3 7s ease-in-out infinite;
+  box-shadow: 0 0 14px rgba(143,27,58,.6);
+}
+.hero-particle:nth-child(4) {
+  width: 6px; height: 6px;
+  background: rgba(212,175,106,.5);
+  bottom: 18%; right: 12%;
+  animation: particleDrift1 9s ease-in-out infinite reverse;
+}
+.hero-particle:nth-child(5) {
+  width: 4px; height: 4px;
+  background: rgba(255,255,255,.4);
+  top: 50%; left: 4%;
+  animation: particleDrift2 5.5s ease-in-out infinite reverse;
+}
+.hero-particle:nth-child(6) {
+  width: 7px; height: 7px;
+  background: rgba(184,34,73,.6);
+  top: 10%; right: 20%;
+  animation: particleDrift3 10s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(184,34,73,.4);
+}
+
+@keyframes particleDrift1 {
+  0%,100% { transform: translate(0, 0) scale(1); opacity: .8; }
+  33%      { transform: translate(12px, -18px) scale(1.15); opacity: 1; }
+  66%      { transform: translate(-8px, -10px) scale(.9); opacity: .6; }
+}
+@keyframes particleDrift2 {
+  0%,100% { transform: translate(0, 0); opacity: .6; }
+  50%      { transform: translate(-14px, 14px); opacity: 1; }
+}
+@keyframes particleDrift3 {
+  0%,100% { transform: translate(0, 0) scale(1); opacity: .7; }
+  40%      { transform: translate(10px, 12px) scale(1.2); opacity: 1; }
+  80%      { transform: translate(-6px, 6px) scale(.85); opacity: .5; }
+}
+
+
+/* ── 3. SHIMMER RING — cincin ketiga berkilau ── */
+.hero-visual::before {
+  /* override: tambah dashed dash pattern lewat background-image */
+  border: none !important;
+  background: none;
+  width: 460px !important; height: 460px !important;
+  border-radius: 50% !important;
+  /* Dashed ring via repeating conic gradient */
+  background-image: repeating-conic-gradient(
+    rgba(212,175,106,.35) 0deg 4deg,
+    transparent 4deg 16deg
+  ) !important;
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #fff calc(100% - 1.5px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #fff calc(100% - 1.5px));
+  animation: shimmerRing 20s linear infinite !important;
+}
+
+@keyframes shimmerRing {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+
+/* ── 4. FLOATING BADGE — info melayang di kanan atas visual ── */
+.hero-badge {
+  position: absolute;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.22);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 40px;
+  padding: 9px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-size: .78rem;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 5;
+  box-shadow: 0 4px 20px rgba(0,0,0,.25);
+}
+
+/* Badge 1 — kanan atas */
+.hero-badge--1 {
+  top: 8%;
+  right: -10px;
+  animation: badgeFloat 5s ease-in-out infinite;
+}
+
+/* Badge 2 — kiri bawah */
+.hero-badge--2 {
+  bottom: 12%;
+  left: -10px;
+  animation: badgeFloat 6.5s ease-in-out infinite reverse;
+}
+
+/* Badge 3 — kanan bawah */
+.hero-badge--3 {
+  bottom: 28%;
+  right: -14px;
+  animation: badgeFloat 7s ease-in-out 1s infinite;
+}
+
+.hero-badge__icon {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+.hero-badge__text strong {
+  display: block;
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--accent, #d4af6a);
+  line-height: 1.2;
+}
+.hero-badge__text span {
+  font-size: .68rem;
+  color: rgba(255,255,255,.6);
+}
+
+@keyframes badgeFloat {
+  0%,100% { transform: translateY(0px); }
+  50%      { transform: translateY(-10px); }
+}
+
+
+/* ── 5. SPARKLE / BINTANG KECIL ── */
+.hero-sparkle {
+  position: absolute;
+  pointer-events: none;
+  z-index: 4;
+  width: 18px; height: 18px;
+  opacity: 0;
+}
+
+.hero-sparkle::before,
+.hero-sparkle::after {
+  content: '';
+  position: absolute;
+  background: rgba(212,175,106,.9);
+  border-radius: 2px;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+}
+.hero-sparkle::before { width: 2px; height: 100%; }
+.hero-sparkle::after  { width: 100%; height: 2px; }
+
+.hero-sparkle:nth-of-type(1) {
+  top: 20%; right: 5%;
+  animation: sparklePop 4s ease-in-out 0s infinite;
+}
+.hero-sparkle:nth-of-type(2) {
+  top: 60%; left: 5%;
+  animation: sparklePop 4s ease-in-out 1.3s infinite;
+}
+.hero-sparkle:nth-of-type(3) {
+  bottom: 15%; right: 18%;
+  animation: sparklePop 4s ease-in-out 2.6s infinite;
+}
+
+@keyframes sparklePop {
+  0%,100% { opacity: 0; transform: scale(.5) rotate(0deg); }
+  20%      { opacity: 1; transform: scale(1.1) rotate(45deg); }
+  50%      { opacity: .8; transform: scale(.9) rotate(90deg); }
+  80%      { opacity: 0; transform: scale(.4) rotate(135deg); }
+}
+
+
+/* ── 6. SUBTLE GRADIENT SWEEP di dalam hero-circle ── */
+.hero-circle::after {
+  display: block !important;           /* override hero-circle::after {display:none} dari main.css */
+  content: '' !important;
+  position: absolute !important;
+  inset: -30px !important;
+  border-radius: 50% !important;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(212,175,106,.07) 60deg,
+    transparent 120deg
+  ) !important;
+  animation: conicSweep 8s linear infinite !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+@keyframes conicSweep {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}

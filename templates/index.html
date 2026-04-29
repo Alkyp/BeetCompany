@@ -15,6 +15,9 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main1.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/hero_anim.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/product_w3.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/social.css') }}" />
 </head>
 <body>
 
@@ -28,13 +31,13 @@
 
   <ul class="nav-links">
     <li><a href="#home"       data-i18n="nav.home">Home</a></li>
-    <li><a href="#about"      data-i18n="nav.about">Tentang</a></li>
-    <li><a href="#background" data-i18n="nav.background">Latar Belakang</a></li>
-    <li><a href="#benefits"   data-i18n="nav.benefits">Manfaat</a></li>
+    <a href="{{ url_for('story') }}" data-i18n="nav.story">Our Story</a>
     <li><a href="#visi"       data-i18n="nav.visi">Visi &amp; Misi</a></li>
+    <li><a href="#benefits"   data-i18n="nav.benefits">Manfaat</a></li>
     <li><a href="#product"    data-i18n="nav.product">Produk</a></li>
     <li><a href="#center"     data-i18n="nav.center">Center</a></li>
     <li><a href="#testimoni"  data-i18n="nav.testimoni">Testimoni</a></li>
+    <li><a href="#sosmed"     data-i18n="nav.sosmed">Media Sosial</a></li>
     <li><a href="#contact"    class="btn-contact" data-i18n="nav.contact">Kontak</a></li>
   </ul>
 
@@ -53,13 +56,13 @@
 <!-- Mobile Nav Overlay -->
 <div class="mobile-nav" id="mobileNav">
   <a href="#home"       class="mobile-link" data-i18n="nav.home">Home</a>
-  <a href="#about"      class="mobile-link" data-i18n="nav.about">Tentang</a>
-  <a href="#background" class="mobile-link" data-i18n="nav.background">Latar Belakang</a>
-  <a href="#benefits"   class="mobile-link" data-i18n="nav.benefits">Manfaat</a>
+  <a href="{{ url_for('story') }}" class="mobile-link" data-i18n="nav.story">Our Story</a>
   <a href="#visi"       class="mobile-link" data-i18n="nav.visi">Visi &amp; Misi</a>
+  <a href="#benefits"   class="mobile-link" data-i18n="nav.benefits">Manfaat</a>
   <a href="#product"    class="mobile-link" data-i18n="nav.product">Produk</a>
   <a href="#center"     class="mobile-link" data-i18n="nav.center">Center</a>
   <a href="#testimoni"  class="mobile-link" data-i18n="nav.testimoni">Testimoni</a>
+  <a href="#sosmed"     class="mobile-link" data-i18n="nav.sosmed">Media Sosial</a>
   <a href="#contact"    class="mobile-link btn-contact-m" data-i18n="nav.contact">Kontak</a>
   <!-- Mobile Language Toggle -->
   <div class="mobile-lang">
@@ -77,14 +80,14 @@
   <div class="hero-glow"></div>
   <!-- Decorative PNG background image (right side, semi-transparent) -->
   <div class="hero-bg-img" aria-hidden="true">
-    <img src="{{ url_for('static', filename='img/beetroot-removebg-preview.png') }}" alt="" class="hero-bg-beet">
+    <img src="{{ url_for('static', filename='img/2d-flat-vector-illustration-beetroot-600nw-2671542399-removebg-preview.png') }}" alt="" class="hero-bg-beet">
   </div>
 
   <div class="hero-content container">
     <!-- Text column -->
     <div class="hero-text">
-      <div class="hero-tag fade-in" data-i18n="hero.tag">🌿 BCI — From Nature to Future.</div>
-      <h1 class="hero-title fade-in" data-i18n="hero.title">Fuel At Your <em>Fingertips</em></h1>
+      <!--<div class="hero-tag fade-in" data-i18n="hero.tag">🌿 BCI — From Nature to Future.</div>-->
+      <h1 class="hero-title fade-in" data-i18n="hero.title">From Nature to <em>Future</em></h1>
       <p class="hero-desc fade-in" data-i18n="hero.desc">Superfood berbasis buah bit berkualitas tinggi dari pegunungan Indonesia, diolah higienis untuk mendukung gaya hidup sehat Anda.</p>
       <div class="hero-btns fade-in">
         <a href="#product" class="btn-primary" data-i18n="hero.btn.product">Lihat Produk</a>
@@ -120,7 +123,7 @@
     <!-- Visual column — static, no orbit -->
     <div class="hero-visual">
       <div class="hero-circle">
-        <img src="{{ url_for('static', filename='img/beetroot-removebg-preview.png') }}"
+        <img src="{{ url_for('static', filename='img/2d-flat-vector-illustration-beetroot-600nw-2671542399-removebg-preview.png') }}"
              alt="Beet"
              class="hero-beet-img">
       </div>
@@ -174,63 +177,31 @@
   </div>
 </section>
 
-
-<!-- ══════════ ABOUT ══════════ -->
-<section id="about">
+<!-- ══════════ VISI & MISI ══════════ -->
+<section id="visi">
   <div class="container">
-    <div class="about-grid">
-      <div class="about-img-wrap fade-in-left">
-        <div class="about-img-main">
-          <img src="{{ url_for('static', filename='img/compressed_IMG_0106.JPG') }}" alt="Beet Farm" loading="lazy">
-        </div>
-      </div>
-      <div class="fade-in-right">
-        <div class="section-tag" data-i18n="about.tag">Tentang Kami</div>
-        <h2 class="section-title" data-i18n="about.title">Beet Center <span>Indonesia</span></h2>
-        <div class="divider"></div>
-        <p class="section-desc" data-i18n="about.desc">Beet Center Indonesia merupakan perusahaan agroindustri umbi bit yang mengembangkan, membudidayakan, dan menghilirisasikan umbi bit lokal berkualitas tinggi melalui kemitraan dengan petani serta inovasi riset terapan untuk menghasilkan produk pangan fungsional dan bahan baku industri yang berkelanjutan dan berdaya saing nasional maupun internasional.</p>
-        <div class="about-features">
-          <div class="feature-item">
-            <div class="feature-icon">🌿</div>
-            <div class="feature-text">
-              <h4 data-i18n="about.f1.title">100% Bahan Alami</h4>
-              <p data-i18n="about.f1.desc">Dipilih dari ladang terbaik di pegunungan Indonesia tanpa bahan sintetis</p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">🏭</div>
-            <div class="feature-text">
-              <h4 data-i18n="about.f2.title">Proses Higienis &amp; Terstandar</h4>
-              <p data-i18n="about.f2.desc">Produksi berstandar tinggi menjaga kandungan nutrisi alami tetap utuh</p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">💚</div>
-            <div class="feature-text">
-              <h4 data-i18n="about.f3.title">Gaya Hidup Sehat Modern</h4>
-              <p data-i18n="about.f3.desc">Dirancang praktis untuk mendukung pola hidup sehat berkelanjutan</p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div style="text-align:center;" class="fade-in">
+      <div class="section-tag" data-i18n="visi.tag">Arah Perusahaan</div>
+      <h2 class="section-title" data-i18n="visi.title">Visi <span>&amp; Misi</span></h2>
+      <div class="divider" style="margin:16px auto;"></div>
     </div>
-  </div>
-</section>
-
-
-<!-- ══════════ BACKGROUND ══════════ -->
-<section id="background">
-  <div class="container">
-    <div class="bg-grid">
-      <div class="bg-content fade-in-left">
-        <div class="section-tag" data-i18n="bg.tag">Latar Belakang</div>
-        <h2 class="section-title" data-i18n="bg.title">Mengapa <span>Buah Bit?</span></h2>
-        <div class="divider"></div>
-        <p class="section-desc" style="max-width:100%;" data-i18n="bg.p1">Meningkatnya kesadaran masyarakat terhadap pentingnya gaya hidup sehat mendorong kebutuhan akan produk pangan yang tidak hanya mengenyangkan, tetapi juga memberikan manfaat kesehatan jangka panjang.</p>
-        <p class="section-desc" style="max-width:100%; margin-top:16px;" data-i18n="bg.p2">Melihat kondisi tersebut, CV. Agro Sehat Nusantara hadir sebagai solusi dengan menghadirkan produk berbasis buah bit (beetroot) — superfood kaya antioksidan, vitamin, dan mineral penting yang diolah menjadi produk fungsional praktis sehari-hari tanpa menghilangkan khasiat alaminya.</p>
+    <div class="vm-grid">
+      <div class="vm-card vision fade-in-left">
+        <div class="vm-icon">🎯</div>
+        <h3 data-i18n="visi.vision.title">Visi Kami</h3>
+        <p data-i18n="visi.vision.text">Menjadi Pusat Agribisnis umbi bit Organik Terintegrasi Terbesar di Indonesia yang menjadi Rujukan Nasional dalam Produksi, Inovasi, dan Pengembangan Ekosistem Umbi bit berkelanjutan dari Hulu hingga Hilir.</p>
       </div>
-      <div class="bg-img fade-in-right">
-        <img src="{{ url_for('static', filename='img/top-view-beets-table.jpg') }}" alt="Beetroot" loading="lazy" />
+      <div class="vm-card mission fade-in-right">
+        <div class="vm-icon" style="color:var(--primary)">🚀</div>
+        <h3 data-i18n="visi.mission.title">Misi Kami</h3>
+        <ul class="mission-list">
+          <li data-i18n="visi.m1">Mengembangkan budidaya beet organik terintegrasi melalui sistem pertanian modern dan berkelanjutan bersama petani mitra di berbagai wilayah Indonesia.</li>
+          <li data-i18n="visi.m2">Membangun ekosistem agribisnis beet dari hulu hingga hilir, mulai dari produksi, pengolahan, distribusi, hingga pemasaran nasional dan ekspor.</li>
+          <li data-i18n="visi.m3">Meningkatkan kesejahteraan petani beet melalui kemitraan yang adil, peningkatan produktivitas, dan nilai tambah produk.</li>
+          <li data-i18n="visi.m4">Menjadi pusat riset, inovasi, dan pengembangan varietas beet unggulan yang mendukung industri pangan, kesehatan, dan herbal nasional.</li>
+          <li data-i18n="visi.m5">Menghasilkan produk beet berkualitas tinggi dan tersertifikasi (organik, halal, dan keamanan pangan) untuk memenuhi pasar nasional dan global.</li>
+          <li data-i18n="visi.m6">Mendorong pertanian berkelanjutan dan ramah lingkungan melalui pemanfaatan limbah pertanian, teknologi pertanian, dan praktik pertanian organik terpadu.</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -271,37 +242,6 @@
         <div class="benefit-num">25<span class="benefit-unit">x</span></div>
         <div class="benefit-label" data-i18n="benefit.label.5">Asam Folat</div>
         <div class="benefit-sub" data-i18n="benefit.sub.5">vs. Alpukat</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════ VISI & MISI ══════════ -->
-<section id="visi">
-  <div class="container">
-    <div style="text-align:center;" class="fade-in">
-      <div class="section-tag" data-i18n="visi.tag">Arah Perusahaan</div>
-      <h2 class="section-title" data-i18n="visi.title">Visi <span>&amp; Misi</span></h2>
-      <div class="divider" style="margin:16px auto;"></div>
-    </div>
-    <div class="vm-grid">
-      <div class="vm-card vision fade-in-left">
-        <div class="vm-icon">🎯</div>
-        <h3 data-i18n="visi.vision.title">Visi Kami</h3>
-        <p data-i18n="visi.vision.text">Menjadi Pusat Agribisnis umbi bit Organik Terintegrasi Terbesar di Indonesia yang menjadi Rujukan Nasional dalam Produksi, Inovasi, dan Pengembangan Ekosistem Umbi bit berkelanjutan dari Hulu hingga Hilir.</p>
-      </div>
-      <div class="vm-card mission fade-in-right">
-        <div class="vm-icon" style="color:var(--primary)">🚀</div>
-        <h3 data-i18n="visi.mission.title">Misi Kami</h3>
-        <ul class="mission-list">
-          <li data-i18n="visi.m1">Mengembangkan budidaya beet organik terintegrasi melalui sistem pertanian modern dan berkelanjutan bersama petani mitra di berbagai wilayah Indonesia.</li>
-          <li data-i18n="visi.m2">Membangun ekosistem agribisnis beet dari hulu hingga hilir, mulai dari produksi, pengolahan, distribusi, hingga pemasaran nasional dan ekspor.</li>
-          <li data-i18n="visi.m3">Meningkatkan kesejahteraan petani beet melalui kemitraan yang adil, peningkatan produktivitas, dan nilai tambah produk.</li>
-          <li data-i18n="visi.m4">Menjadi pusat riset, inovasi, dan pengembangan varietas beet unggulan yang mendukung industri pangan, kesehatan, dan herbal nasional.</li>
-          <li data-i18n="visi.m5">Menghasilkan produk beet berkualitas tinggi dan tersertifikasi (organik, halal, dan keamanan pangan) untuk memenuhi pasar nasional dan global.</li>
-          <li data-i18n="visi.m6">Mendorong pertanian berkelanjutan dan ramah lingkungan melalui pemanfaatan limbah pertanian, teknologi pertanian, dan praktik pertanian organik terpadu.</li>
-        </ul>
       </div>
     </div>
   </div>
@@ -642,7 +582,7 @@
             <div class="contact-item-icon">📍</div>
             <div class="contact-item-text">
               <div class="contact-item-label" data-i18n="contact.addr.label">Alamat</div>
-              Jakarta, Indonesia
+              Sukoharjo, Indonesia
             </div>
           </div>
           <div class="contact-item">
@@ -688,21 +628,291 @@
 </section>
 
 
+<!-- ══════════ SOSIAL MEDIA ══════════ -->
+<section id="sosmed">
+  <div class="container">
+
+    <div class="sosmed-header fade-in">
+      <div class="sosmed-eyebrow" data-i18n="sosmed.tag">Temukan Kami</div>
+      <h2 class="sosmed-title" data-i18n="sosmed.title">Ikuti <span>Perjalanan</span> Kami</h2>
+      <p class="sosmed-desc" data-i18n="sosmed.desc">Update produk terbaru, tips kesehatan, dan behind-the-scene langsung dari ladang ke media sosial kami.</p>
+    </div>
+
+    <div class="sosmed-grid">
+
+      <!-- Instagram -->
+      <a href="https://instagram.com/beetcenterindonesia" target="_blank" rel="noopener" class="sosmed-card sosmed-card--instagram fade-in">
+        <div class="sosmed-card__glow"></div>
+        <div class="sosmed-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </div>
+        <div class="sosmed-info">
+          <div class="sosmed-platform">Instagram</div>
+          <div class="sosmed-handle">@beetcenterid</div>
+          <div class="sosmed-cta">Follow untuk konten harian</div>
+        </div>
+        <span class="sosmed-arrow">→</span>
+      </a>
+
+      <!-- TikTok -->
+      <a href="https://tiktok.com/@beetcenterindonesia" target="_blank" rel="noopener" class="sosmed-card sosmed-card--tiktok fade-in">
+        <div class="sosmed-card__glow"></div>
+        <div class="sosmed-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.73a4.86 4.86 0 01-1.01-.04z"/></svg>
+        </div>
+        <div class="sosmed-info">
+          <div class="sosmed-platform">TikTok</div>
+          <div class="sosmed-handle">@beetcenterid</div>
+          <div class="sosmed-cta">Video tips &amp; resep sehat</div>
+        </div>
+        <span class="sosmed-arrow">→</span>
+      </a>
+
+      <!-- YouTube -->
+      <a href="https://youtube.com/@beetcenterindonesia" target="_blank" rel="noopener" class="sosmed-card sosmed-card--youtube fade-in">
+        <div class="sosmed-card__glow"></div>
+        <div class="sosmed-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </div>
+        <div class="sosmed-info">
+          <div class="sosmed-platform">YouTube</div>
+          <div class="sosmed-handle">Beet Center Indonesia</div>
+          <div class="sosmed-cta">Video profil &amp; edukasi</div>
+        </div>
+        <span class="sosmed-arrow">→</span>
+      </a>
+
+      <!-- Facebook -->
+      <a href="https://facebook.com/beetcenterindonesia" target="_blank" rel="noopener" class="sosmed-card sosmed-card--facebook fade-in">
+        <div class="sosmed-card__glow"></div>
+        <div class="sosmed-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </div>
+        <div class="sosmed-info">
+          <div class="sosmed-platform">Facebook</div>
+          <div class="sosmed-handle">Beet Center Indonesia</div>
+          <div class="sosmed-cta">Info promo &amp; komunitas</div>
+        </div>
+        <span class="sosmed-arrow">→</span>
+      </a>
+
+      <!-- Shopee -->
+      <a href="https://shopee.co.id/beetcenterindonesia" target="_blank" rel="noopener" class="sosmed-card sosmed-card--shopee fade-in">
+        <div class="sosmed-card__glow"></div>
+        <div class="sosmed-icon">🛒</div>
+        <div class="sosmed-info">
+          <div class="sosmed-platform">Shopee</div>
+          <div class="sosmed-handle">beetcenterindonesia</div>
+          <div class="sosmed-cta">Beli produk &amp; promo eksklusif</div>
+        </div>
+        <span class="sosmed-arrow">→</span>
+      </a>
+
+      <!-- WhatsApp -->
+      <a href="https://wa.me/6282121217307?text=Halo%20Beet%20Center%20Indonesia%2C%20saya%20ingin%20mengetahui%20lebih%20lanjut%20tentang%20produk%20Anda." target="_blank" rel="noopener" class="sosmed-card sosmed-card--whatsapp fade-in">
+        <div class="sosmed-card__glow"></div>
+        <div class="sosmed-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.985-1.407A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.073-1.117l-.292-.174-3.012.85.853-2.944-.19-.302A7.944 7.944 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+        </div>
+        <div class="sosmed-info">
+          <div class="sosmed-platform">WhatsApp</div>
+          <div class="sosmed-handle">082121217307</div>
+          <div class="sosmed-cta">Chat langsung dengan kami</div>
+        </div>
+        <span class="sosmed-arrow">→</span>
+      </a>
+
+    </div><!-- /sosmed-grid -->
+
+    <hr class="sosmed-divider" />
+  </div>
+</section>
+
+
 <!-- ══════════ FOOTER ══════════ -->
 <footer>
-  <p data-i18n="footer.text">© 2026 <span>Beet Center Indonesia</span> — CV. Agro Sehat Nusantara. Created by <span>Aldianto Dickyu Septian</span>. All Rights Reserved.</p>
+  <p data-i18n="footer.text">© 2026 <span></span>. All Rights Reserved.</p>
 </footer>
 
 
-<!-- WA FLOAT -->
-<a href="https://wa.me/6282121217307" class="wa-btn" target="_blank" title="Chat WhatsApp">
-  <svg viewBox="0 0 24 24">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-  </svg>
-</a>
+<!-- ══ WA POPUP + BACK TO TOP ══ -->
+<style>
+  .fab-group {
+    position: fixed; bottom: 32px; right: 28px;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 12px; z-index: 1000;
+  }
+  .fab-top {
+    width: 46px; height: 46px; border-radius: 50%;
+    background: rgba(15,5,8,.85);
+    border: 1px solid rgba(212,175,106,.35);
+    color: #d4af6a; font-size: 1.1rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,.4);
+    transition: opacity .3s, transform .3s, background .2s;
+    opacity: 0; pointer-events: none; text-decoration: none;
+    line-height: 1;
+  }
+  .fab-top.show { opacity: 1; pointer-events: all; }
+  .fab-top:hover { background: rgba(143,27,58,.6); transform: translateY(-3px); }
+
+  .fab-wa {
+    width: 54px; height: 54px; border-radius: 50%;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; box-shadow: 0 6px 28px rgba(37,211,102,.45);
+    transition: transform .25s, box-shadow .25s; position: relative;
+  }
+  .fab-wa:hover { transform: scale(1.1); box-shadow: 0 10px 40px rgba(37,211,102,.6); }
+  .fab-wa svg { width: 26px; height: 26px; fill: #fff; }
+  .fab-wa::before {
+    content: ''; position: absolute; inset: -4px; border-radius: 50%;
+    border: 2px solid rgba(37,211,102,.5);
+    animation: waPing 2s ease-out infinite;
+  }
+  @keyframes waPing {
+    0%   { transform: scale(1); opacity: .8; }
+    100% { transform: scale(1.55); opacity: 0; }
+  }
+
+  .wa-popup {
+    position: fixed; bottom: 100px; right: 28px;
+    width: 300px; background: #1e1e1e;
+    border-radius: 16px; overflow: hidden;
+    box-shadow: 0 16px 60px rgba(0,0,0,.6);
+    z-index: 999;
+    transform: translateY(20px) scale(.95);
+    opacity: 0; pointer-events: none;
+    transition: transform .3s cubic-bezier(.2,0,.2,1), opacity .3s;
+  }
+  .wa-popup.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: all; }
+
+  .wa-popup__header {
+    background: linear-gradient(135deg, #075E54, #128C7E);
+    padding: 16px 18px; display: flex; align-items: center; gap: 12px;
+  }
+  .wa-popup__avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: rgba(255,255,255,.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0;
+  }
+  .wa-popup__info { flex: 1; }
+  .wa-popup__name { font-weight: 600; font-size: .9rem; color: #fff; }
+  .wa-popup__status { font-size: .72rem; color: rgba(255,255,255,.7); margin-top: 2px; }
+  .wa-popup__status::before { content: '●'; color: #25D366; margin-right: 4px; font-size: .55rem; }
+  .wa-popup__close-btn {
+    background: none; border: none; color: rgba(255,255,255,.6);
+    font-size: 1.1rem; cursor: pointer; padding: 4px; transition: color .2s;
+  }
+  .wa-popup__close-btn:hover { color: #fff; }
+
+  .wa-popup__body { padding: 18px 16px 8px; background: #ECE5DD; }
+  .wa-bubble {
+    background: #fff; border-radius: 0 12px 12px 12px;
+    padding: 10px 14px; font-size: .84rem; line-height: 1.55;
+    color: #111; display: inline-block; max-width: 92%;
+    box-shadow: 0 1px 3px rgba(0,0,0,.15); position: relative;
+  }
+  .wa-bubble::before {
+    content: ''; position: absolute; top: 0; left: -8px;
+    border: 8px solid transparent;
+    border-right-color: #fff; border-top: 0;
+  }
+  .wa-bubble__time { font-size: .65rem; color: #999; text-align: right; margin-top: 4px; }
+
+  .wa-popup__footer { padding: 12px 16px 16px; background: #ECE5DD; }
+  .wa-send-btn {
+    width: 100%; padding: 11px;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: #fff; border: none; border-radius: 30px;
+    font-size: .88rem; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: opacity .2s; text-decoration: none;
+  }
+  .wa-send-btn:hover { opacity: .9; }
+
+  @media (max-width: 600px) {
+    .wa-popup { width: calc(100vw - 40px); right: 20px; }
+    .fab-group { bottom: 24px; right: 20px; }
+  }
+</style>
+
+<!-- Popup -->
+<div class="wa-popup" id="waPopup">
+  <div class="wa-popup__header">
+    <div class="wa-popup__avatar">🌿</div>
+    <div class="wa-popup__info">
+      <div class="wa-popup__name">Beet Center Indonesia</div>
+      <div class="wa-popup__status">Online</div>
+    </div>
+    <button class="wa-popup__close-btn" id="waPopupClose">✕</button>
+  </div>
+  <div class="wa-popup__body">
+    <div class="wa-bubble">
+      Halo! 👋 Ada yang bisa kami bantu?<br>Hubungi kami untuk info produk, pemesanan, atau kemitraan bisnis.
+      <div class="wa-bubble__time">Beet Center Indonesia</div>
+    </div>
+  </div>
+  <div class="wa-popup__footer">
+    <a id="waSendBtn"
+       href="https://wa.me/6282121217307?text=Halo%20Beet%20Center%20Indonesia%2C%20saya%20tertarik%20dengan%20produk%20Anda.%20Boleh%20minta%20info%20lebih%20lanjut%3F"
+       target="_blank" rel="noopener" class="wa-send-btn">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.985-1.407A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.073-1.117l-.292-.174-3.012.85.853-2.944-.19-.302A7.944 7.944 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+      Mulai Chat WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- FAB Group -->
+<div class="fab-group">
+  <a href="#" class="fab-top" id="fabTop" title="Kembali ke atas">↑</a>
+  <div class="fab-wa" id="fabWa" title="Chat WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.985-1.407A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.073-1.117l-.292-.174-3.012.85.853-2.944-.19-.302A7.944 7.944 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+  </div>
+</div>
+
+<script>
+(function () {
+  var fabWa   = document.getElementById('fabWa');
+  var waPopup = document.getElementById('waPopup');
+  var waClose = document.getElementById('waPopupClose');
+  var fabTop  = document.getElementById('fabTop');
+  var open    = false;
+
+  function togglePopup() {
+    open = !open;
+    waPopup.classList.toggle('open', open);
+  }
+
+  fabWa.addEventListener('click', togglePopup);
+  waClose.addEventListener('click', function () { open = false; waPopup.classList.remove('open'); });
+  document.addEventListener('click', function (e) {
+    if (open && !waPopup.contains(e.target) && e.target !== fabWa && !fabWa.contains(e.target)) {
+      open = false; waPopup.classList.remove('open');
+    }
+  });
+
+  /* Auto-open setelah 5 detik (sekali saja) */
+  setTimeout(function () {
+    if (!open) { open = true; waPopup.classList.add('open'); }
+  }, 5000);
+
+  /* Back to top */
+  window.addEventListener('scroll', function () {
+    fabTop.classList.toggle('show', window.scrollY > 400);
+  });
+  fabTop.addEventListener('click', function (e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
 
 <!-- JavaScript -->
 <script src="{{ url_for('static', filename='js/lang.js') }}"></script>
 <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/hero_anim.js') }}"></script>
 </body>
 </html>

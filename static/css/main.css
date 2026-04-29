@@ -17,7 +17,7 @@
   --shadow:       0 8px 40px rgba(143, 27, 58, 0.12);
   --nav-h:        72px;
 }
-html { scroll-behavior: smooth; }
+/* scroll-behavior: smooth — handled by JS (initSmoothScroll) to avoid double-smooth conflict */
 body {
   font-family: 'DM Sans', sans-serif;
   color: var(--text);
@@ -40,7 +40,8 @@ a    { text-decoration: none; color: inherit; }
   display: flex; align-items: center;
   padding: 0 5%;
   gap: 12px;
-  transition: background .4s, box-shadow .4s, border-color .4s, backdrop-filter .4s;
+  /* backdrop-filter intentionally excluded from transition — animating blur triggers full repaint every frame */
+  transition: background .4s, box-shadow .4s, border-color .4s;
 }
 #navbar.scrolled {
   background: rgba(255,255,255,0.97);
@@ -263,7 +264,7 @@ a    { text-decoration: none; color: inherit; }
   grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
 }
 
-.hero-text { /* left column */ }
+/* .hero-text { left column } */
 
 .hero-tag {
   display: inline-block; background: rgba(255,255,255,.1);
@@ -451,7 +452,8 @@ section { padding: 100px 5%; }
    5. VIDEO SECTION
 ───────────────────────────────────────────────────────────── */
 #video {
-  background: var(--off-white);
+  /* background-attachment:fixed removed — forces full repaint on every scroll frame, disables GPU compositing */
+  background: linear-gradient(rgba(250,242,240,0.55), rgba(250,242,240,0.55)), url('/static/img/Vivabeet%2016x23.jpg') center / cover;
   padding: 100px 5%;
 }
 .video-header {
@@ -559,7 +561,7 @@ section { padding: 100px 5%; }
 /* ─────────────────────────────────────────────────────────────
    6. ABOUT
 ───────────────────────────────────────────────────────────── */
-#about { background: var(--white); }
+#about { background: linear-gradient(rgba(250,242,240,0.55), rgba(250,242,240,0.55)), url('/static/img/Vivabeet%2016x23.jpg') center / cover; }
 .about-grid {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 80px; align-items: center;
@@ -599,7 +601,7 @@ section { padding: 100px 5%; }
 /* ─────────────────────────────────────────────────────────────
    7. BACKGROUND
 ───────────────────────────────────────────────────────────── */
-#background { background: var(--off-white); }
+#background { background: linear-gradient(rgba(250,242,240,0.55), rgba(250,242,240,0.55)), url('/static/img/Vivabeet%2016x23.jpg') center / cover; }
 .bg-grid {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 80px; align-items: center;
@@ -622,7 +624,7 @@ section { padding: 100px 5%; }
    8. BENEFITS
 ───────────────────────────────────────────────────────────── */
 #benefits {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  background: linear-gradient(135deg, rgba(143,27,58,0.88) 0%, rgba(90,10,30,0.92) 100%), url('/static/img/Vivabeet%2016x23.jpg') center / cover;
   position: relative; overflow: hidden;
 }
 #benefits::before {
@@ -655,10 +657,10 @@ section { padding: 100px 5%; }
 /* ─────────────────────────────────────────────────────────────
    9. SCROLL ANIMATIONS
 ───────────────────────────────────────────────────────────── */
-.js-loaded .fade-in       { opacity: 0; transform: translateY(30px);  transition: opacity .7s ease, transform .7s ease; }
-.js-loaded .fade-in-left  { opacity: 0; transform: translateX(-30px); transition: opacity .7s ease, transform .7s ease; }
-.js-loaded .fade-in-right { opacity: 0; transform: translateX(30px);  transition: opacity .7s ease, transform .7s ease; }
-.fade-in.visible, .fade-in-left.visible, .fade-in-right.visible { opacity: 1; transform: translate(0); }
+.js-loaded .fade-in       { opacity: 0; transform: translateY(30px);  transition: opacity .7s ease, transform .7s ease; will-change: opacity, transform; }
+.js-loaded .fade-in-left  { opacity: 0; transform: translateX(-30px); transition: opacity .7s ease, transform .7s ease; will-change: opacity, transform; }
+.js-loaded .fade-in-right { opacity: 0; transform: translateX(30px);  transition: opacity .7s ease, transform .7s ease; will-change: opacity, transform; }
+.fade-in.visible, .fade-in-left.visible, .fade-in-right.visible { opacity: 1; transform: translate3d(0,0,0); will-change: auto; }
 @media print {
   .fade-in, .fade-in-left, .fade-in-right { opacity: 1 !important; transform: none !important; }
 }
@@ -686,15 +688,52 @@ section { padding: 100px 5%; }
 /* ─────────────────────────────────────────────────────────────
    11. RESPONSIVE
 ───────────────────────────────────────────────────────────── */
+/* ── Hero: collapse to single column on tablets (up to 1100px) ── */
+@media (max-width: 1100px) {
+  #home { min-height: 100svh; }
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 0;
+    text-align: center;
+    padding: 70px 8% 80px;
+  }
+  .hero-text  { display: flex; flex-direction: column; align-items: center; }
+  .hero-tag   { align-self: center; }
+  .hero-desc  { max-width: 600px; text-align: center; hyphens: none; margin-left: auto; margin-right: auto; }
+  .hero-btns  { justify-content: center; }
+  .hero-visual  { display: none; }
+  .hero-bg-img  { display: none; }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    margin-top: 40px;
+    padding-top: 28px;
+    width: 100%;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .stat-label { white-space: normal; font-size: .6rem; }
+}
+
 @media (max-width: 1024px) {
   .benefits-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
   .nav-links  { display: none; }
   .hamburger  { display: flex; }
   .lang-toggle { margin-left: auto; }
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+
+  /* ── Hero: collapse stats to 3-col on smaller tablets ── */
+  .hero-stats {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 420px;
+    row-gap: 20px;
+  }
+  .stat:nth-child(4)::before { display: none; }
+  .hero-content { padding: 60px 6% 70px; }
 
   /* ══ ABOUT: section-tag → gambar → isi konten ══ */
   .about-grid {
@@ -737,15 +776,11 @@ section { padding: 100px 5%; }
 
 @media (max-width: 640px) {
   section { padding: 70px 5%; }
-  .hero-content { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-  .hero-visual  { display: none; }
-  .hero-bg-img  { display: none; }
-  .hero-btns, .hero-stats { justify-content: center; }
-  .hero-stats { grid-template-columns: repeat(3, 1fr); }
-  .stat { padding: 8px 4px; }
+  /* hero already single-col from 900px; just tweak spacing for small phones */
+  .hero-content { padding: 50px 5% 60px; }
+  .hero-stats   { max-width: 100%; grid-template-columns: repeat(3, 1fr); }
+  .stat { padding: 4px 4px; }
   .stat + .stat::before { top: 10%; bottom: 10%; }
-  .hero-visual::before { width: 260px; height: 260px; }
-  .hero-visual::after  { width: 200px; height: 200px; }
   .benefits-grid { grid-template-columns: 1fr; gap: 12px; }
   .benefit-num   { font-size: 2.2rem; }
   .gallery-grid  {

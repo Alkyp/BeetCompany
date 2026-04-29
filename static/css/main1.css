@@ -1,7 +1,9 @@
 /* ─────────────────────────────────────────────────────────────
    8. VISI & MISI
 ───────────────────────────────────────────────────────────── */
-#visi { background: var(--white); }
+#visi {
+  background: linear-gradient(rgba(250,242,240,0.55), rgba(250,242,240,0.55)), url('/static/img/Vivabeet%2016x23.jpg') center / cover fixed;
+}
 .vm-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
   margin-top: 50px;
@@ -11,7 +13,7 @@
   position: relative; overflow: hidden;
 }
 .vm-card.vision  { background: var(--primary); color: #fff; }
-.vm-card.mission { background: var(--off-white); border: 2px solid var(--border); }
+.vm-card.mission { background: var(--off-white); }
 .vm-card::before {
   content: ''; position: absolute;
   width: 200px; height: 200px; border-radius: 50%;
@@ -46,7 +48,9 @@
 /* ─────────────────────────────────────────────────────────────
    9. PRODUCTS SLIDER — Responsive (desktop:3, tablet:2, mobile:1)
 ───────────────────────────────────────────────────────────── */
-#product { background: var(--off-white); }
+#product {
+  background: linear-gradient(rgba(250,242,240,0.55), rgba(250,242,240,0.55)), url('/static/img/Vivabeet%2016x23.jpg') center / cover fixed;
+}
 .product-header { text-align: center; margin-bottom: 50px; }
 .product-header .divider { margin: 16px auto; }
 
@@ -77,7 +81,7 @@
   background: var(--white);
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: var(--shadow);
+  /* box-shadow: var(--shadow); */
   display: flex;
   flex-direction: row;
   height: 100%;
@@ -194,7 +198,9 @@
 /* ─────────────────────────────────────────────────────────────
    10. CENTER / GALLERY
 ───────────────────────────────────────────────────────────── */
-#center { background: var(--white); }
+#center {
+  background: linear-gradient(rgba(250,242,240,0.55), rgba(250,242,240,0.55)), url('/static/img/Vivabeet%2016x23.jpg') center / cover fixed;
+}
 .gallery-header { text-align: center; margin-bottom: 50px; }
 .gallery-header .divider { margin: 16px auto; }
 .gallery-grid {
@@ -295,7 +301,10 @@
 /* ─────────────────────────────────────────────────────────────
    11. CLIENTS / MARQUEE
 ───────────────────────────────────────────────────────────── */
-#clients { background: var(--off-white); padding: 70px 0; }
+#clients {
+  background: linear-gradient(rgba(250,242,240,0.55), rgba(250,242,240,0.55)), url('/static/img/Vivabeet%2016x23.jpg') center / cover fixed;
+  padding: 70px 0;
+}
 .clients-header { text-align: center; margin-bottom: 40px; padding: 0 5%; }
 .marquee-wrap { overflow: hidden; position: relative; }
 .marquee-wrap::before,
@@ -334,7 +343,9 @@
 /* ─────────────────────────────────────────────────────────────
    12. TESTIMONIALS SLIDER
 ───────────────────────────────────────────────────────────── */
-#testimoni { background: var(--white); }
+#testimoni {
+  background: linear-gradient(rgba(250,242,240,0.55), rgba(250,242,240,0.55)), url('/static/img/Vivabeet%2016x23.jpg') center / cover fixed;
+}
 .testi-header { text-align: center; margin-bottom: 50px; }
 .testi-header .divider { margin: 16px auto; }
 
@@ -525,14 +536,51 @@ footer span { color: var(--accent); }
 /* ─────────────────────────────────────────────────────────────
    16. RESPONSIVE
 ───────────────────────────────────────────────────────────── */
+/* ── Hero: collapse to single column on tablets (up to 1100px) ── */
+@media (max-width: 1100px) {
+  #home { min-height: 100svh; }
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 0;
+    text-align: center;
+    padding: 70px 8% 80px;
+  }
+  .hero-text  { display: flex; flex-direction: column; align-items: center; }
+  .hero-tag   { align-self: center; }
+  .hero-desc  { max-width: 600px; text-align: center; hyphens: none; margin-left: auto; margin-right: auto; }
+  .hero-btns  { justify-content: center; }
+  .hero-visual  { display: none; }
+  .hero-bg-img  { display: none; }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    margin-top: 40px;
+    padding-top: 28px;
+    width: 100%;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .stat-label { white-space: normal; font-size: .6rem; }
+}
+
 @media (max-width: 1024px) {
   .benefits-grid { grid-template-columns: repeat(3, 1fr); }
 }
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
   .nav-links  { display: none; }
   .hamburger  { display: flex; }
   .mobile-nav { display: flex; }
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+
+  /* ── Hero: collapse stats to 3-col on smaller tablets ── */
+  .hero-stats {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 420px;
+    row-gap: 20px;
+  }
+  .stat:nth-child(4)::before { display: none; }
+  .hero-content { padding: 60px 6% 70px; }
 
   /* ══ ABOUT: section-tag → gambar → isi konten ══
      display:contents membuat children dari .fade-in-right
@@ -582,11 +630,11 @@ footer span { color: var(--accent); }
 }
 @media (max-width: 640px) {
   section { padding: 70px 5%; }
-  .hero-content { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-  .hero-visual  { display: none; }
-  .hero-btns, .hero-stats { justify-content: center; }
-  .hero-stats { gap: 12px 16px; }
-  .stat { flex: 1 1 calc(33.33% - 16px); min-width: 64px; }
+  /* hero already single-col from 900px; just adjust spacing for small phones */
+  .hero-content { padding: 50px 5% 60px; }
+  .hero-stats   { max-width: 100%; grid-template-columns: repeat(3, 1fr); }
+  .stat { padding: 4px 4px; }
+  .stat + .stat::before { top: 10%; bottom: 10%; }
   .benefits-grid { grid-template-columns: 1fr; gap: 12px; }
   .benefit-num   { font-size: 2.2rem; }
   .gallery-grid  {

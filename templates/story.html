@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beet Center Indonesia — Our Story</title>
+  <link rel="icon" type="image/png"
+          href="{{ url_for('static', filename='img/logo.png') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Crimson+Pro:ital,wght@0,300;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/story.css') }}" />
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav class="story-nav">
+    <div class="story-nav__logo">Beet Center Indonesia</div>
+    <div class="story-nav__right">
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="id">ID</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <a href="{{ url_for('index') }}" class="story-nav__back" data-i18n="nav.back">Kembali ke Beranda</a>
+    </div>
+  </nav>
+
+
+  <!-- ══ HERO ══ -->
+  <section class="s-hero">
+    <div class="s-hero__bg"></div>
+    <div class="s-hero__grid"></div>
+    <div class="s-hero__orb s-hero__orb--1"></div>
+    <div class="s-hero__orb s-hero__orb--2"></div>
+    <div class="s-hero__orb s-hero__orb--3"></div>
+    <div class="s-hero__rule"></div>
+    <p class="s-hero__eyebrow" data-i18n="hero.eyebrow">Kisah di Balik Setiap Tetes</p>
+    <h1 class="s-hero__title" data-i18n="hero.title">Dari <em>Tanah</em><br>Ke Meja Makan</h1>
+    <p class="s-hero__title-sub" data-i18n="hero.subtitle">Perjalanan Ketulusan</p>
+    <p class="s-hero__desc" data-i18n="hero.desc">Kami bukan sekadar produsen. Kami adalah penjaga tradisi, pemelihara bumi, dan mitra kesehatan jutaan keluarga Indonesia.</p>
+    <div class="s-hero__scroll">
+      <span data-i18n="hero.scroll">Gulir ke bawah</span>
+      <div class="s-hero__scroll-line"></div>
+    </div>
+  </section>
+
+
+  <!-- ══ SECTION 1 — ORIGIN ══ -->
+  <section class="s-section s-origin">
+    <div class="origin-grid">
+      <div class="origin-visual reveal">
+        <div class="origin-big-num">1</div>
+        <div class="origin-year-card">
+          <div class="origin-year">2018</div>
+          <div class="origin-year-sub" data-i18n="origin.yearSub">Tahun Kelahiran</div>
+          <p class="origin-year-desc" data-i18n="origin.yearDesc">"Berawal dari sebuah kebun kecil di lereng Gunung Lawu, kami percaya bahwa alam menyimpan jawaban atas segala kebutuhan tubuh manusia."</p>
+        </div>
+        <div class="timeline" style="margin-top:40px;">
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div><div class="tl-year">2018</div><p class="tl-text" data-i18n="tl.y2018"><strong>Benih Pertama.</strong> Satu hektar lahan, satu mimpi besar. Pendiri kami menanam batch perdana buah bit organik bersama petani lokal.</p></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div><div class="tl-year">2020</div><p class="tl-text" data-i18n="tl.y2020"><strong>Panen & Produksi.</strong> Fasilitas cold-press pertama beroperasi. Produk pertama hadir di pasar dengan respons yang luar biasa.</p></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div><div class="tl-year">2022</div><p class="tl-text" data-i18n="tl.y2022"><strong>Sertifikasi & Ekspansi.</strong> Meraih sertifikat Halal MUI dan izin BPOM. Jaringan mitra petani meluas ke 5 provinsi.</p></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div></div>
+            <div><div class="tl-year">2024</div><p class="tl-text" data-i18n="tl.y2024"><strong>Kini.</strong> Melayani lebih dari 500+ mitra, tersedia di Shopee, dan terus berinovasi demi kesehatan Indonesia.</p></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="chapter-label reveal">
+          <span class="chapter-label__num">01</span>
+          <div class="chapter-label__line"></div>
+          <span class="chapter-label__text" data-i18n="origin.chapterLabel">Asal Muasal</span>
+        </div>
+        <h2 class="s-heading s-heading--xl reveal reveal-delay-1" data-i18n="origin.heading">Berawal dari<br><em>Satu Kebun</em><br>Satu Keyakinan</h2>
+        <div style="height:24px;"></div>
+        <p class="s-body reveal reveal-delay-2" data-i18n="origin.body1">Tahun 2018, di desa kecil di kaki Gunung Lawu, seorang petani muda bernama Raden Agus melihat ladang buah bit yang diabaikan. <strong>Ia melihat potensi yang tidak dilihat orang lain</strong> — superfood yang tumbuh subur di tanah vulkanik kaya mineral, namun belum pernah diolah dengan teknologi yang tepat.</p>
+        <div style="height:20px;"></div>
+        <p class="s-body reveal reveal-delay-3" data-i18n="origin.body2">Bersama sekelompok kecil petani yang percaya pada visi yang sama, ia memulai perjalanan panjang — belajar teknik cold-press, membangun standar organik, dan memastikan <strong>setiap botol membawa manfaat nyata</strong> bagi konsumen tanpa mengorbankan kesehatan bumi.</p>
+        <div style="height:20px;"></div>
+        <p class="s-body reveal reveal-delay-4" data-i18n="origin.body3">Hari ini, Beet Center Indonesia hadir sebagai bukti bahwa kecintaan terhadap alam dan ketekunan dapat mengubah satu kebun kecil menjadi gerakan kesehatan yang menyentuh ratusan ribu kehidupan.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ QUOTE ══ -->
+  <section class="s-quote">
+    <div class="s-quote__mark">"</div>
+    <p class="s-quote__text reveal" data-i18n="quote.text">Kami tidak hanya menjual produk.<br>Kami menjual <em>kepercayaan</em> bahwa alam<br>selalu cukup untuk menyehatkan kita.</p>
+    <div class="gold-divider" style="margin-bottom:24px;"></div>
+    <p class="s-quote__author reveal reveal-delay-1"><strong>Raden Agus Prasetyo</strong> &nbsp;·&nbsp; <span data-i18n="quote.role">Pendiri & CEO, Beet Center Indonesia</span></p>
+  </section>
+
+
+  <!-- ══ MISSION ══ -->
+  <section class="s-section s-mission">
+    <div class="mission-wrap">
+      <div class="mission-lead">
+        <div class="chapter-label reveal">
+          <span class="chapter-label__num">02</span>
+          <div class="chapter-label__line"></div>
+          <span class="chapter-label__text" data-i18n="mission.label">Misi & Visi</span>
+        </div>
+        <h2 class="s-heading s-heading--xl reveal reveal-delay-1" data-i18n="mission.heading">Mengapa Kami<br><em>Ada?</em></h2>
+        <div style="height:16px;"></div>
+        <p class="s-body reveal reveal-delay-2" data-i18n="mission.body">Di balik setiap produk terdapat tujuan yang lebih besar dari sekadar keuntungan — sebuah komitmen untuk mengubah cara Indonesia memandang kesehatan dan alam.</p>
+      </div>
+      <div class="mission-cards">
+        <div class="m-card reveal">
+          <span class="m-card__icon">🎯</span>
+          <div class="m-card__label" data-i18n="mission.c1.label">Misi</div>
+          <h3 class="m-card__title" data-i18n="mission.c1.title">Alam sebagai Apotek</h3>
+          <p class="m-card__text" data-i18n="mission.c1.text">Menghadirkan produk berbasis tanaman lokal berkualitas tinggi yang dapat diakses oleh semua lapisan masyarakat Indonesia — dari kota besar hingga pelosok desa.</p>
+        </div>
+        <div class="m-card reveal reveal-delay-1">
+          <span class="m-card__icon">🌏</span>
+          <div class="m-card__label" data-i18n="mission.c2.label">Visi</div>
+          <h3 class="m-card__title" data-i18n="mission.c2.title">Indonesia Sehat 2030</h3>
+          <p class="m-card__text" data-i18n="mission.c2.text">Menjadi merek superfood Indonesia yang dikenal di seluruh Asia Tenggara, sambil mempertahankan akar pada petani lokal dan ekosistem yang lestari.</p>
+        </div>
+        <div class="m-card reveal reveal-delay-2">
+          <span class="m-card__icon">🤝</span>
+          <div class="m-card__label" data-i18n="mission.c3.label">Komitmen</div>
+          <h3 class="m-card__title" data-i18n="mission.c3.title">Sejahtera Bersama</h3>
+          <p class="m-card__text" data-i18n="mission.c3.text">Setiap pembelian berkontribusi langsung pada pendapatan petani mitra kami, program beasiswa anak petani, dan pelestarian lahan pertanian organik.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ PROCESS ══ -->
+  <section class="s-section s-process">
+    <div class="process-wrap">
+      <div class="process-header">
+        <div>
+          <div class="chapter-label reveal">
+            <span class="chapter-label__num">03</span>
+            <div class="chapter-label__line"></div>
+            <span class="chapter-label__text" data-i18n="process.label">Cara Kami Bekerja</span>
+          </div>
+          <h2 class="s-heading s-heading--xl reveal reveal-delay-1" data-i18n="process.heading">Dari <em>Benih</em><br>Hingga Botol</h2>
+        </div>
+        <p class="s-body reveal reveal-delay-2" style="max-width:380px;" data-i18n="process.body">Setiap tahap kami kendalikan dengan teliti. Bukan karena tidak percaya, tetapi karena kami bertanggung jawab atas setiap tetes yang masuk ke tubuh Anda.</p>
+      </div>
+      <div class="process-steps">
+        <div class="ps-item reveal"><div class="ps-num">01</div><h3 class="ps-title" data-i18n="process.s1.title">Seleksi Benih</h3><p class="ps-text" data-i18n="process.s1.text">Hanya varietas buah bit unggulan dengan kandungan betalain tertinggi yang kami pilih. Benih bersertifikat organik, bebas GMO.</p></div>
+        <div class="ps-item reveal reveal-delay-1"><div class="ps-num">02</div><h3 class="ps-title" data-i18n="process.s2.title">Tanam & Rawat</h3><p class="ps-text" data-i18n="process.s2.text">Dibudidayakan di tanah vulkanik bebas pestisida, dengan irigasi alami dan pemupukan organik selama 90–120 hari masa tumbuh.</p></div>
+        <div class="ps-item reveal reveal-delay-2"><div class="ps-num">03</div><h3 class="ps-title" data-i18n="process.s3.title">Panen & QC</h3><p class="ps-text" data-i18n="process.s3.text">Dipanen manual pada waktu optimal. Setiap batch melewati uji laboratorium independen untuk memastikan kemurnian dan kadar nutrisi.</p></div>
+        <div class="ps-item reveal reveal-delay-3"><div class="ps-num">04</div><h3 class="ps-title" data-i18n="process.s4.title">Proses & Kemas</h3><p class="ps-text" data-i18n="process.s4.text">Teknologi cold-press bersuhu rendah mempertahankan enzim aktif. Dikemas dalam kemasan daur ulang, siap dikirim ke seluruh Indonesia.</p></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ VALUES ══ -->
+  <section class="s-values">
+    <div class="values-bg-text">BEETROOT</div>
+    <div class="values-wrap">
+      <div class="values-header">
+        <div class="chapter-label reveal" style="justify-content:center;">
+          <span class="chapter-label__num">04</span>
+          <div class="chapter-label__line" style="max-width:40px;"></div>
+          <span class="chapter-label__text" data-i18n="values.label">Nilai Kami</span>
+        </div>
+        <h2 class="s-heading s-heading--xl reveal reveal-delay-1" data-i18n="values.heading">Prinsip yang <em>Tak Pernah</em><br>Kami Kompromikan</h2>
+      </div>
+      <div class="values-list">
+        <div class="v-item reveal"><div class="v-icon-wrap">🌱</div><div><h3 class="v-title" data-i18n="values.v1.title">Organik Sejati</h3><p class="v-text" data-i18n="values.v1.text">Tidak ada pestisida sintetis. Tidak ada pupuk kimia. Tidak ada rekayasa genetika. Hanya alam, sinar matahari, dan ketelatenan petani kami.</p></div></div>
+        <div class="v-item reveal reveal-delay-1"><div class="v-icon-wrap">🔬</div><div><h3 class="v-title" data-i18n="values.v2.title">Berbasis Ilmu</h3><p class="v-text" data-i18n="values.v2.text">Setiap klaim didukung riset. Kami bekerja sama dengan Universitas Gadjah Mada dan IPB untuk validasi kandungan dan manfaat produk.</p></div></div>
+        <div class="v-item reveal reveal-delay-2"><div class="v-icon-wrap">🤲</div><div><h3 class="v-title" data-i18n="values.v3.title">Berdayakan Petani</h3><p class="v-text" data-i18n="values.v3.text">60% margin diberikan langsung kepada petani mitra. Kami percaya kesejahteraan petani adalah fondasi produk yang benar-benar berkualitas.</p></div></div>
+        <div class="v-item reveal reveal-delay-3"><div class="v-icon-wrap">♻️</div><div><h3 class="v-title" data-i18n="values.v4.title">Ramah Lingkungan</h3><p class="v-text" data-i18n="values.v4.text">Kemasan 100% dapat didaur ulang. Program buyback botol kaca. Target carbon-neutral sebelum tahun 2027 untuk seluruh rantai produksi.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ STATS ══ -->
+  <section class="s-stats">
+    <div class="stats-grid">
+      <div class="stat-item reveal"><div class="stat-num">500<span class="stat-unit">+</span></div><div class="stat-label" data-i18n="stats.s1.label">Mitra Petani</div><div class="stat-desc" data-i18n="stats.s1.desc">Di 7 provinsi Indonesia</div></div>
+      <div class="stat-item reveal reveal-delay-1"><div class="stat-num">50<span class="stat-unit">rb+</span></div><div class="stat-label" data-i18n="stats.s2.label">Pelanggan Aktif</div><div class="stat-desc" data-i18n="stats.s2.desc">Di seluruh Nusantara</div></div>
+      <div class="stat-item reveal reveal-delay-2"><div class="stat-num">4<span class="stat-unit">+</span></div><div class="stat-label" data-i18n="stats.s3.label">Lini Produk</div><div class="stat-desc" data-i18n="stats.s3.desc">Terus berkembang</div></div>
+      <div class="stat-item reveal reveal-delay-3"><div class="stat-num">95<span class="stat-unit">%</span></div><div class="stat-label" data-i18n="stats.s4.label">Kepuasan Pelanggan</div><div class="stat-desc" data-i18n="stats.s4.desc">Rating rata-rata 4.8/5</div></div>
+    </div>
+  </section>
+
+
+  <!-- ══ CLOSE CTA ══ -->
+  <section class="s-close">
+    <span class="s-close__pre" data-i18n="cta.pre">Bergabung Bersama Kami</span>
+    <h2 class="s-close__title reveal" data-i18n="cta.title">Jadilah Bagian dari<br><em>Gerakan</em> Ini</h2>
+    <p class="s-close__sub reveal reveal-delay-1" data-i18n="cta.sub">Setiap pembelian Anda bukan hanya untuk kesehatan diri sendiri — tetapi juga untuk petani, bumi, dan generasi berikutnya.</p>
+    <div class="s-close__actions reveal reveal-delay-2">
+      <a href="{{ url_for('index') }}#product" class="btn-primary" data-i18n="cta.btnProduct">Lihat Produk Kami</a>
+      <a href="{{ url_for('index') }}#contact" class="btn-ghost" data-i18n="cta.btnContact">Hubungi Kami</a>
+    </div>
+    <div class="s-close__deco">🌿</div>
+  </section>
+
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="s-foot">
+    <span class="s-foot__logo">Beet Center Indonesia</span>
+    <span class="s-foot__copy" data-i18n="footer.copy">© 2026 Beet Center Indonesia. Semua hak dilindungi.</span>
+  </footer>
+
+
+  <!-- ══ FLOATING: WA POPUP + BACK TO TOP ══ -->
+  <div class="wa-popup" id="waPopup">
+    <div class="wa-popup__header">
+      <div class="wa-popup__avatar">🌿</div>
+      <div class="wa-popup__info">
+        <div class="wa-popup__name">Beet Center Indonesia</div>
+        <div class="wa-popup__status" data-i18n="wa.status">Online</div>
+      </div>
+      <button class="wa-popup__close-btn" id="waPopupClose">✕</button>
+    </div>
+    <div class="wa-popup__body">
+      <div class="wa-bubble">
+        <span data-i18n="wa.bubble">Halo! 👋 Ada yang bisa kami bantu? Hubungi kami langsung via WhatsApp untuk info produk, pemesanan, atau kemitraan.</span>
+        <div class="wa-bubble__time">Beet Center Indonesia</div>
+      </div>
+    </div>
+    <div class="wa-popup__footer">
+      <a id="waSendBtn" href="#" target="_blank" rel="noopener" class="wa-send-btn">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.985-1.407A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.073-1.117l-.292-.174-3.012.85.853-2.944-.19-.302A7.944 7.944 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+        <span data-i18n="wa.btnText">Mulai Chat WhatsApp</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="fab-group">
+    <a href="#" class="fab-top" id="fabTop" title="Kembali ke atas">↑</a>
+    <div class="fab-wa" id="fabWa" title="Chat WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.985-1.407A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.073-1.117l-.292-.174-3.012.85.853-2.944-.19-.302A7.944 7.944 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/story.js') }}"></script>
+</body>
+</html>

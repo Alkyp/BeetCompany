@@ -20,6 +20,10 @@ RECIPIENT_EMAIL = 'beetcenterindonesia@gmail.com'
 def index():
     return render_template('index.html')
 
+@app.route('/story')
+def story():
+    return render_template('story.html')
+
 
 @app.route('/send-message', methods=['POST'])
 def send_message():

@@ -12,6 +12,7 @@
     id: {
       /* Navbar */
       'nav.home':       'Home',
+      'nav.story':      'Kisah Kami',
       'nav.about':      'Tentang',
       'nav.background': 'Latar Belakang',
       'nav.benefits':   'Manfaat',
@@ -23,7 +24,7 @@
 
       /* Hero */
       'hero.tag':           '🌿 BCI — From Nature to Future.',
-      'hero.title':         'Fuel At Your <em>Fingertips</em>',
+      'hero.title':         'From Nature to <em>Future</em>',
       'hero.desc':          'Superfood berbasis buah bit berkualitas tinggi dari pegunungan Indonesia, diolah higienis untuk mendukung gaya hidup sehat Anda.',
       'hero.btn.product':   'Lihat Produk',
       'hero.stat.organic':  'Organik',
@@ -132,7 +133,7 @@
       'contact.form.msg.ph':     'Tulis pesan Anda di sini...',
 
       /* Footer */
-      'footer.text': '© 2026 <span>Beet Center Indonesia</span> — CV. Agro Sehat Nusantara. Created by <span>Aldianto Dickyu Septian</span>. All Rights Reserved.',
+      'footer.text': '© 2026 <span>Beet Center Indonesia</span> </span>. All Rights Reserved.',
 
       /* Form messages (used by main.js) */
       'form.err.required': '⚠️ Mohon lengkapi nama, email, dan pesan Anda.',
@@ -146,6 +147,7 @@
     en: {
       /* Navbar */
       'nav.home':       'Home',
+      'nav.story':      'Our Story',
       'nav.about':      'About',
       'nav.background': 'Background',
       'nav.benefits':   'Benefits',
@@ -157,7 +159,7 @@
 
       /* Hero */
       'hero.tag':           '🌿 BCI — From Nature to Future.',
-      'hero.title':         'Fuel At Your <em>Fingertips</em>',
+      'hero.title':         'From Nature to <em>Future</em>',
       'hero.desc':          'High-quality beetroot-based superfood from the Indonesian highlands, hygienically processed to support your healthy lifestyle.',
       'hero.btn.product':   'View Products',
       'hero.stat.organic':  'Organic',
@@ -266,7 +268,7 @@
       'contact.form.msg.ph':     'Write your message here...',
 
       /* Footer */
-      'footer.text': '© 2026 <span>Beet Center Indonesia</span> — CV. Agro Sehat Nusantara. Created by <span>Aldianto Dickyu Septian</span>. All Rights Reserved.',
+      'footer.text': '© 2026 <span>Beet Center Indonesia</span> </span>. All Rights Reserved.',
 
       /* Form messages */
       'form.err.required': '⚠️ Please fill in your name, email, and message.',

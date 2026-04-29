@@ -1,0 +1,309 @@
+/* ═══════════════════════════════════════════════════════════════
+   SOCIAL MEDIA SECTION
+   File: static/css/social.css
+
+   Cara pakai: tambahkan di <head> index.html
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/social.css') }}" />
+═══════════════════════════════════════════════════════════════ */
+
+/* ── SECTION WRAPPER ── */
+#sosmed {
+  padding: 100px 6%;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%,   rgba(143,27,58,.22) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 35% at 90% 100%,  rgba(212,175,106,.08) 0%, transparent 50%),
+    linear-gradient(180deg, #1c0910 0%, #0f0508 100%);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+
+/* Subtle noise overlay */
+#sosmed::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#sosmed .container { position: relative; z-index: 1; }
+
+/* ── HEADER ── */
+#sosmed .sosmed-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+#sosmed .sosmed-eyebrow {
+  display: inline-block;
+  font-size: .68rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: #fce7a3;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 30px;
+  padding: 5px 18px;
+  margin-bottom: 20px;
+}
+#sosmed .sosmed-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+#sosmed .sosmed-title span { color: #f5d27a; font-style: italic; }
+#sosmed .sosmed-desc {
+  font-size: .925rem;
+  color: rgba(255,255,255,.45);
+  max-width: 460px;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+/* ── GRID ── */
+.sosmed-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* ── CARD BASE ── */
+.sosmed-card {
+  position: relative;
+  border-radius: 20px;
+  padding: 28px 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  border: 1px solid rgba(255,255,255,.1);
+  background: rgba(255,255,255,.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  text-decoration: none;
+  color: #fff;
+  overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s;
+  cursor: pointer;
+}
+.sosmed-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 48px rgba(0,0,0,.4);
+}
+/* Top shimmer line on hover */
+.sosmed-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  opacity: 0;
+  transition: opacity .3s;
+}
+.sosmed-card:hover::before { opacity: 1; }
+
+/* Glow blob behind icon */
+.sosmed-card__glow {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: opacity .35s;
+}
+.sosmed-card:hover .sosmed-card__glow { opacity: .55; }
+
+/* Icon circle */
+.sosmed-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Text */
+.sosmed-info { flex: 1; position: relative; z-index: 1; }
+.sosmed-platform {
+  font-size: .65rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: 3px;
+}
+.sosmed-handle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.2;
+}
+.sosmed-cta {
+  font-size: .72rem;
+  color: rgba(255,255,255,.38);
+  margin-top: 4px;
+}
+
+/* Arrow */
+.sosmed-arrow {
+  font-size: 1rem;
+  color: rgba(255,255,255,.25);
+  transition: transform .25s, color .25s;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.sosmed-card:hover .sosmed-arrow {
+  transform: translateX(4px);
+  color: rgba(255,255,255,.6);
+}
+
+/* ── INSTAGRAM ── */
+.sosmed-card--instagram {
+  border-color: rgba(225, 48, 108, .2);
+}
+.sosmed-card--instagram:hover {
+  border-color: rgba(225, 48, 108, .5);
+  box-shadow: 0 16px 48px rgba(225,48,108,.15);
+}
+.sosmed-card--instagram::before {
+  background: linear-gradient(90deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+.sosmed-card--instagram .sosmed-icon {
+  background: linear-gradient(135deg, #f09433 0%, #dc2743 50%, #bc1888 100%);
+}
+.sosmed-card--instagram .sosmed-card__glow {
+  background: radial-gradient(circle, #e6683c, transparent);
+}
+
+/* ── TIKTOK ── */
+.sosmed-card--tiktok {
+  border-color: rgba(105,201,208,.15);
+}
+.sosmed-card--tiktok:hover {
+  border-color: rgba(105,201,208,.4);
+  box-shadow: 0 16px 48px rgba(105,201,208,.1);
+}
+.sosmed-card--tiktok::before {
+  background: linear-gradient(90deg, #010101, #69c9d0, #ee1d52);
+}
+.sosmed-card--tiktok .sosmed-icon {
+  background: linear-gradient(135deg, #010101 0%, #69c9d0 100%);
+}
+.sosmed-card--tiktok .sosmed-card__glow {
+  background: radial-gradient(circle, #69c9d0, transparent);
+}
+
+/* ── YOUTUBE ── */
+.sosmed-card--youtube {
+  border-color: rgba(255,0,0,.15);
+}
+.sosmed-card--youtube:hover {
+  border-color: rgba(255,0,0,.4);
+  box-shadow: 0 16px 48px rgba(255,0,0,.1);
+}
+.sosmed-card--youtube::before {
+  background: linear-gradient(90deg, #ff0000, #cc0000);
+}
+.sosmed-card--youtube .sosmed-icon {
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+}
+.sosmed-card--youtube .sosmed-card__glow {
+  background: radial-gradient(circle, #ff0000, transparent);
+}
+
+/* ── FACEBOOK ── */
+.sosmed-card--facebook {
+  border-color: rgba(24,119,242,.15);
+}
+.sosmed-card--facebook:hover {
+  border-color: rgba(24,119,242,.4);
+  box-shadow: 0 16px 48px rgba(24,119,242,.1);
+}
+.sosmed-card--facebook::before {
+  background: linear-gradient(90deg, #1877f2, #166fe5);
+}
+.sosmed-card--facebook .sosmed-icon {
+  background: linear-gradient(135deg, #1877f2, #166fe5);
+}
+.sosmed-card--facebook .sosmed-card__glow {
+  background: radial-gradient(circle, #1877f2, transparent);
+}
+
+/* ── SHOPEE ── */
+.sosmed-card--shopee {
+  border-color: rgba(238,77,45,.18);
+}
+.sosmed-card--shopee:hover {
+  border-color: rgba(238,77,45,.5);
+  box-shadow: 0 16px 48px rgba(238,77,45,.12);
+}
+.sosmed-card--shopee::before {
+  background: linear-gradient(90deg, #ee4d2d, #ff6633);
+}
+.sosmed-card--shopee .sosmed-icon {
+  background: linear-gradient(135deg, #ee4d2d, #ff6633);
+}
+.sosmed-card--shopee .sosmed-card__glow {
+  background: radial-gradient(circle, #ee4d2d, transparent);
+}
+
+/* ── WHATSAPP ── */
+.sosmed-card--whatsapp {
+  border-color: rgba(37,211,102,.15);
+}
+.sosmed-card--whatsapp:hover {
+  border-color: rgba(37,211,102,.4);
+  box-shadow: 0 16px 48px rgba(37,211,102,.1);
+}
+.sosmed-card--whatsapp::before {
+  background: linear-gradient(90deg, #25d366, #128c7e);
+}
+.sosmed-card--whatsapp .sosmed-icon {
+  background: linear-gradient(135deg, #25d366, #128c7e);
+}
+.sosmed-card--whatsapp .sosmed-card__glow {
+  background: radial-gradient(circle, #25d366, transparent);
+}
+
+/* ── DIVIDER ── */
+.sosmed-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,106,.4), transparent);
+  border: none;
+  width: 180px;
+  margin: 56px auto 0;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  .sosmed-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 520px) {
+  #sosmed { padding: 80px 5%; }
+  .sosmed-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .sosmed-card { padding: 22px 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sosmed-card { transition: none; }
+}
