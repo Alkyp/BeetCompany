@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beet Center Indonesia</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Lato', sans-serif; background: #1a0010; }
+
+  .hero {
+    min-height: 100vh;
+    background: radial-gradient(ellipse at 70% 50%, #7a0030 0%, #3d0018 40%, #1a0010 100%);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 60px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 46px;
+    height: 46px;
+    border: 2px solid white;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: -1px;
+  }
+
+  .logo-text {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    line-height: 1.4;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: #d4a035; }
+  .nav-links a.active {
+    color: white;
+    font-weight: 700;
+    border-bottom: 2px solid white;
+    padding-bottom: 2px;
+  }
+
+  .nav-lang {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 5px 14px;
+    gap: 8px;
+    font-size: 13px;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+
+  .nav-lang span.active { color: #d4a035; font-weight: 700; }
+
+  .hero-body {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 60px;
+    position: relative;
+  }
+
+  .hero-content {
+    max-width: 520px;
+    padding-bottom: 100px;
+    position: relative;
+    z-index: 5;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 68px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: white;
+    margin-bottom: 0;
+  }
+
+  .hero-title .gold {
+    color: #c8973a;
+    font-style: italic;
+    display: block;
+    margin-top: 4px;
+  }
+
+  .hero-subtitle {
+    margin-top: 24px;
+    color: rgba(255,255,255,0.8);
+    font-size: 15.5px;
+    line-height: 1.7;
+    max-width: 400px;
+    font-weight: 300;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    margin-top: 36px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: #8b1a35;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: #a02040; transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: white;
+    border: 1.5px solid rgba(255,255,255,0.6);
+    padding: 13px 28px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .btn-outline:hover { border-color: white; transform: translateY(-1px); }
+
+  /* =============================================
+     GAMBAR: ganti src dengan foto asli kamu.
+     object-position: bottom memastikan gambar
+     selalu mepet ke dasar section.
+  ============================================= */
+  .hero-image {
+    position: absolute;
+    right: 0;
+    bottom: 0;         /* mepet bawah */
+    height: 92%;
+    z-index: 3;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .hero-image img {
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom; /* gambar tidak melayang */
+    display: block;
+  }
+
+  .beet-glow {
+    position: absolute;
+    top: 50%;
+    right: 300px;
+    transform: translateY(-50%);
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(120, 20, 50, 0.5) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* =============================================
+     STATS BAR — diposisikan paling bawah
+  ============================================= */
+  .stats-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 60px 48px;
+    z-index: 10;
+  }
+
+  .stats-divider {
+    width: 580px;
+    height: 1px;
+    background: rgba(255,255,255,0.2);
+    margin-bottom: 30px;
+  }
+
+  .stats-inner {
+    display: flex;
+    align-items: center;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-right: 36px;
+    margin-right: 36px;
+    border-right: 1px solid rgba(255,255,255,0.25);
+  }
+
+  .stat-item:last-child {
+    border-right: none;
+    margin-right: 0;
+    padding-right: 0;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #c8973a;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  .whatsapp-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 52px;
+    height: 52px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+    z-index: 100;
+    transition: transform 0.2s;
+    text-decoration: none;
+  }
+  .whatsapp-btn:hover { transform: scale(1.08); }
+  .whatsapp-btn svg { width: 28px; height: 28px; fill: white; }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <nav>
+    <a href="#" class="logo">
+      <div class="logo-icon">BCI</div>
+      <div class="logo-text">BEET CENTER<br>INDONESIA</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Home</a></li>
+      <li><a href="#">Our Story</a></li>
+      <li><a href="#">Vision &amp; Mission</a></li>
+      <li><a href="#">Benefits</a></li>
+      <li><a href="#">Product</a></li>
+      <li><a href="#">Center</a></li>
+      <li><a href="#">Testimonials</a></li>
+      <li><a href="#" style="background:#8b1a35;padding:8px 18px;border-radius:20px;color:white;">Contact</a></li>
+    </ul>
+    <div class="nav-lang">
+      <span>ID</span>
+      <span style="color:rgba(255,255,255,0.4)">|</span>
+      <span class="active">EN</span>
+    </div>
+  </nav>
+
+  <div class="hero-body">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        From Nature to
+        <span class="gold">Future</span>
+      </h1>
+      <p class="hero-subtitle">
+        High-quality beetroot-based superfood from the Indonesian highlands, hygienically processed to support your healthy lifestyle.
+      </p>
+      <div class="hero-btns">
+        <button class="btn-primary">View Products</button>
+        <button class="btn-outline">Our Story</button>
+      </div>
+    </div>
+
+    <div class="beet-glow"></div>
+
+    <!-- Ganti src="foto-kamu.png" dengan path foto asli -->
+    <div class="hero-image">
+      <img src="home1.png" alt="Beet Center Indonesia Team" />
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stats-divider"></div>
+    <div class="stats-inner">
+      <div class="stat-item">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">Organic</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">Halal</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">200+</span>
+        <span class="stat-label">Local Farmers</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">500+</span>
+        <span class="stat-label">Partners / Clients</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">1k+</span>
+        <span class="stat-label">Harvests</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<a href="https://wa.me/" class="whatsapp-btn">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+</body>
+</html>

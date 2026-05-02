@@ -36,8 +36,8 @@
       /* Video Section */
       'video.tag':    'Profil Kami',
       'video.title':  'Kenali Lebih Dekat <span>BCI</span>',
-      'video.desc':   'Saksikan perjalanan kami — dari ladang bit di pegunungan Indonesia hingga produk superfood berkualitas tinggi yang sampai ke tangan Anda.',
-      'video.play':   'Putar Video',
+      'video.desc':   'Berawal dari tanah subur dataran tinggi Indonesia, beet pilihan kami ditanam dan dirawat dengan penuh perhatian oleh petani terlatih, lalu diproses dengan standar terbaik untuk menghadirkan energi alami yang mendukung setiap langkah hidup Anda.',
+      'video.play':   'Kisah Kami',
       'video.hint':   'Klik tombol putar untuk menonton',
 
       /* About */
@@ -104,8 +104,23 @@
 
       /* Center */
       'center.tag':   'Pusat Kami',
-      'center.title': 'Fasilitas <span>&amp; Galeri</span>',
-      'center.desc':  'Dikelola langsung dari jantung pegunungan Indonesia dengan standar produksi terbaik',
+      'center.title': 'Program <span>&amp; Kemitraan</span>',
+      'center.desc':  'Tiga program unggulan BCI untuk membangun ekosistem pertanian bit yang terintegrasi dari hulu ke hilir',
+
+      'center.c1.tag':   'Program Pelatihan',
+      'center.c1.title': 'BCI Farm Academy',
+      'center.c1.body':  'BCI Farm Academy merupakan gerbang awal bagi siapa saja yang ingin menjadi bagian dari ekosistem BCI. Program ini dirancang untuk memberikan pelatihan budidaya beet secara praktis dan terarah, sehingga calon petani memiliki pemahaman dan keterampilan dasar sebelum terjun langsung. Melalui proses pembelajaran yang terstruktur dan seleksi yang tetap inklusif, BCI memastikan bahwa setiap petani yang bergabung telah memiliki standar dasar yang cukup. Dengan demikian, kualitas hasil panen dapat mulai dibangun sejak tahap awal.',
+      'center.c1.cta':   'Daftar Program',
+
+      'center.c2.tag':   'Kemitraan Petani',
+      'center.c2.title': 'BCI Mitra Tani',
+      'center.c2.body':  'BCI Mitra Tani adalah program kemitraan bagi petani yang telah melalui tahap pembinaan awal. Dalam program ini, petani tidak hanya menanam, tetapi juga menjadi bagian dari sistem yang lebih terintegrasi. BCI memberikan akses pada pelatihan lanjutan, panduan budidaya, serta dukungan input seperti bibit dan nutrisi. Selain itu, petani juga mendapatkan akses pasar melalui skema prioritas pembelian hasil panen. Pendekatan ini membantu petani memiliki arah yang lebih jelas, sekaligus mendorong peningkatan kualitas dan produktivitas secara bertahap.',
+      'center.c2.cta':   'Bergabung',
+
+      'center.c3.tag':   'Jaringan Distribusi',
+      'center.c3.title': 'BCI Mitra Distribusi',
+      'center.c3.body':  'BCI Mitra Distribusi merupakan program kemitraan yang berfokus pada pengembangan jaringan penjualan dan distribusi produk. Melalui program ini, individu maupun komunitas dapat berperan dalam memperluas jangkauan produk BCI ke pasar yang lebih luas. Tidak hanya menyediakan produk, BCI juga membekali mitra dengan edukasi, sistem distribusi yang terstruktur, serta peluang untuk berkembang ke level yang lebih tinggi. Dengan pendekatan ini, pertumbuhan pasar dapat berjalan lebih terarah tanpa mengabaikan kualitas dan konsistensi brand.',
+      'center.c3.cta':   'Jadi Mitra',
 
       /* Clients */
       'clients.tag':   'Kepercayaan',
@@ -133,7 +148,12 @@
       'contact.form.msg.ph':     'Tulis pesan Anda di sini...',
 
       /* Footer */
-      'footer.text': '© 2026 <span>Beet Center Indonesia</span> </span>. All Rights Reserved.',
+      'footer.text': '© 2026 <span>Beet Center Indonesia</span> — CV. Agro Sehat Nusantara. Created by <span>Aldianto Dickyu Septian</span>. All Rights Reserved.',
+
+      /* WhatsApp Popup */
+      'wa.status': 'Online',
+      'wa.bubble': 'Halo! 👋 Ada yang bisa kami bantu?<br>Hubungi kami untuk info produk, pemesanan, atau kemitraan bisnis.',
+      'wa.btn':    'Mulai Chat WhatsApp',
 
       /* Form messages (used by main.js) */
       'form.err.required': '⚠️ Mohon lengkapi nama, email, dan pesan Anda.',
@@ -171,8 +191,8 @@
       /* Video Section */
       'video.tag':    'Our Profile',
       'video.title':  'Get to Know <span>BCI</span> Better',
-      'video.desc':   'Watch our journey — from beetroot farms in the Indonesian highlands to premium superfood products that reach your hands.',
-      'video.play':   'Play Video',
+      'video.desc':   'Originating from the fertile highlands of Indonesia, our selected beets are cultivated and carefully nurtured by skilled farmers, then processed to the highest standards to deliver natural energy that supports every step of your life.',
+      'video.play':   'Our Story',
       'video.hint':   'Click the play button to watch',
 
       /* About */
@@ -239,8 +259,23 @@
 
       /* Center */
       'center.tag':   'Our Center',
-      'center.title': 'Facilities <span>&amp; Gallery</span>',
-      'center.desc':  'Managed directly from the heart of the Indonesian highlands with the highest production standards',
+      'center.title': 'Programs <span>&amp; Partnerships</span>',
+      'center.desc':  'Three flagship BCI programs to build an integrated beetroot farming ecosystem from farm to market',
+
+      'center.c1.tag':   'Training Program',
+      'center.c1.title': 'BCI Farm Academy',
+      'center.c1.body':  'BCI Farm Academy is the entry point for anyone who wants to become part of the BCI ecosystem. This program is designed to provide practical and structured beetroot cultivation training, so prospective farmers have the foundational knowledge and skills before diving in. Through a structured learning process and inclusive selection, BCI ensures every joining farmer meets a sufficient baseline standard — so that harvest quality can be built from the very beginning.',
+      'center.c1.cta':   'Register',
+
+      'center.c2.tag':   'Farmer Partnership',
+      'center.c2.title': 'BCI Mitra Tani',
+      'center.c2.body':  'BCI Mitra Tani is a partnership program for farmers who have completed the initial coaching phase. In this program, farmers do more than just grow — they become part of a more integrated system. BCI provides access to advanced training, cultivation guides, and input support such as seeds and nutrients. Farmers also gain market access through a priority harvest purchase scheme. This approach gives farmers clearer direction while steadily improving quality and productivity.',
+      'center.c2.cta':   'Join Now',
+
+      'center.c3.tag':   'Distribution Network',
+      'center.c3.title': 'BCI Mitra Distribusi',
+      'center.c3.body':  'BCI Mitra Distribusi is a partnership program focused on expanding the sales and distribution network for BCI products. Through this program, individuals and communities can play a role in bringing BCI products to a wider market. Beyond providing products, BCI equips partners with education, a structured distribution system, and opportunities to grow to higher levels. This approach ensures market growth stays on track without compromising brand quality and consistency.',
+      'center.c3.cta':   'Become a Partner',
 
       /* Clients */
       'clients.tag':   'Trusted By',
@@ -268,7 +303,12 @@
       'contact.form.msg.ph':     'Write your message here...',
 
       /* Footer */
-      'footer.text': '© 2026 <span>Beet Center Indonesia</span> </span>. All Rights Reserved.',
+      'footer.text': '© 2026 <span>Beet Center Indonesia</span> — CV. Agro Sehat Nusantara. Created by <span>Aldianto Dickyu Septian</span>. All Rights Reserved.',
+
+      /* WhatsApp Popup */
+      'wa.status': 'Online',
+      'wa.bubble': 'Hello! 👋 How can we help you?<br>Contact us for product info, orders, or business partnerships.',
+      'wa.btn':    'Start WhatsApp Chat',
 
       /* Form messages */
       'form.err.required': '⚠️ Please fill in your name, email, and message.',

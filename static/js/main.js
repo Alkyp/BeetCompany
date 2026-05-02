@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initScrollAnimations();
   initFormSubmit();
   initSmoothScroll();
+  initStatCounter();
 
 });
 
@@ -585,4 +586,76 @@ function initGalleryTouch() {
     }
     if (!inside) for (var j = 0; j < items.length; j++) items[j].classList.remove('tapped');
   }, { passive: true });
+}
+
+
+/* ============================================
+   STAT COUNTER — counting animation from 0
+   ============================================ */
+function initStatCounter() {
+  var nums = document.querySelectorAll('.stat-num[data-target]');
+  if (!nums.length) return;
+
+  var triggered = false;
+
+  /* Easing: easeOutQuart */
+  function easeOut(t) { return 1 - Math.pow(1 - t, 4); }
+
+  function runCounters() {
+    if (triggered) return;
+    triggered = true;
+
+    nums.forEach(function (el) {
+      var target  = parseInt(el.getAttribute('data-target'), 10);
+      var suffix  = el.getAttribute('data-suffix') || '';
+      var fmt     = el.getAttribute('data-format') || '';
+      var dur     = 1800; /* ms */
+      var start   = null;
+
+      function display(val) {
+        if (fmt === 'k') {
+          /* 0..999 → plain number, 1000 → 1k */
+          return val < 1000 ? val : Math.floor(val / 1000) + 'k' + suffix;
+        }
+        return val + suffix;
+      }
+
+      function step(ts) {
+        if (!start) start = ts;
+        var elapsed  = ts - start;
+        var progress = Math.min(elapsed / dur, 1);
+        var current  = Math.floor(easeOut(progress) * target);
+        el.textContent = display(current);
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = display(target);
+      }
+
+      requestAnimationFrame(step);
+    });
+  }
+
+  /* Trigger when hero-stats enters viewport */
+  var heroStats = document.querySelector('.hero-stats');
+  if (!heroStats) return;
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { runCounters(); io.disconnect(); }
+      });
+    }, { threshold: 0.4 });
+    io.observe(heroStats);
+  } else {
+    /* Fallback: run on scroll once */
+    window.addEventListener('scroll', function handler() {
+      var rect = heroStats.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.85) {
+        runCounters();
+        window.removeEventListener('scroll', handler);
+      }
+    }, { passive: true });
+    /* Also try immediately */
+    var rect = heroStats.getBoundingClientRect();
+    if (rect.top < window.innerHeight) runCounters();
+  }
 }

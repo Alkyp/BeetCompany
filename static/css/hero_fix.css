@@ -1,0 +1,317 @@
+/* ═══════════════════════════════════════════════════════════════
+   HERO FIX v4  —  single mask, no composite, zero borders
+   File: static/css/hero_fix.css
+═══════════════════════════════════════════════════════════════ */
+
+/* ── 1. SECTION ── */
+#home {
+  position: relative !important;
+  overflow: hidden !important;
+  min-height: 100vh !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  align-items: stretch !important;
+  padding-top: 0 !important;
+  background: linear-gradient(135deg, #1a0a0f 0%, #3d0a1c 50%, #8F1B3A 100%) !important;
+}
+
+/* ── 2. HERO-CONTENT ── */
+.hero-content {
+  display: contents !important;
+  position: static !important;
+}
+
+/* ── 3. KOLOM TEKS ── */
+.hero-text {
+  grid-column: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  padding: calc(var(--nav-h, 80px) + 48px) 5% 48px 6% !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.hero-title {
+  font-size: clamp(3rem, 5vw, 5.2rem) !important;
+  line-height: 1.07 !important;
+  margin-bottom: 22px !important;
+}
+
+.hero-desc {
+  font-size: 1.05rem !important;
+  line-height: 1.75 !important;
+  margin-bottom: 36px !important;
+  max-width: 460px !important;
+}
+
+.hero-stats {
+  margin-top: auto !important;
+  padding-top: 28px !important;
+  border-top: 1px solid rgba(255,255,255,.12) !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 0 !important;
+  max-width: 560px !important;
+}
+
+/* ── 4. VISUAL — SATU MASK, tanpa composite ──────────────────
+   Pakai mask diagonal tunggal: fade dari kiri saja.
+   Tepi atas/kanan diatasi dengan overflow:hidden + extend -4px.
+──────────────────────────────────────────────────────────── */
+.hero-visual {
+  grid-column: 2 !important;
+  position: absolute !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  top: -4px !important;            /* extend atas → tutup tepi atas */
+  width: 60% !important;
+  height: calc(100% + 4px) !important;
+  display: block !important;
+  overflow: hidden !important;     /* hidden → potong tepi tanpa artifact */
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+
+  /* SATU mask: fade dari kiri ke kanan (kanan fade tipis juga) */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent    0%,
+    rgba(0,0,0,.3) 10%,
+    #000           30%,
+    #000           80%,
+    rgba(0,0,0,.0) 100%
+  ) !important;
+  mask-image: linear-gradient(
+    to right,
+    transparent    0%,
+    rgba(0,0,0,.3) 10%,
+    #000           30%,
+    #000           80%,
+    rgba(0,0,0,.0) 100%
+  ) !important;
+  /* Hapus composite — sumber artifact */
+  -webkit-mask-composite: unset !important;
+  mask-composite: unset !important;
+}
+
+/* ── 5. HERO-CIRCLE — zero border/shadow ── */
+.hero-circle {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  background: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+}
+
+/* ── 6. GAMBAR ── */
+.hero-beet-img {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: auto !important;
+  width: 100% !important;
+  height: 94% !important;
+  object-fit: contain !important;
+  object-position: bottom center !important;
+  display: block !important;
+  mix-blend-mode: screen !important;
+  filter: brightness(1.06) saturate(1.1) !important;
+  animation: none !important;
+  transform: none !important;
+  will-change: auto !important;
+  margin: 0 !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* ── 7. OVERLAY kiri ── */
+.hero-visual::after {
+  display: block !important;
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(
+    to right,
+    rgba(26,10,15,.88) 0%,
+    rgba(26,10,15,.3)  28%,
+    transparent        55%
+  ) !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+  border-radius: 0 !important;
+  border: none !important;
+  animation: none !important;
+}
+
+/* ── 8. SEMBUNYIKAN semua dekorasi ── */
+.hero-particle,
+.hero-sparkle,
+.hero-badge,
+.hero-bg-img,
+.hero-bg-pattern,
+.hero-glow,
+.hero-circle::before,
+.hero-circle::after,
+.hero-visual::before {
+  display: none !important;
+  animation: none !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1100px) {
+  #home {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100svh !important;
+    align-items: stretch !important;
+  }
+
+  .hero-text {
+    padding: calc(var(--nav-h, 80px) + 32px) 7% 36px !important;
+    align-items: center !important;
+    text-align: center !important;
+    flex: 1 !important;
+  }
+
+  .hero-title { font-size: clamp(2.4rem, 6vw, 4rem) !important; }
+
+  .hero-desc {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .hero-btns { justify-content: center !important; }
+
+  .hero-stats {
+    max-width: 100% !important;
+    justify-content: center !important;
+    margin-top: auto !important;
+  }
+
+  .hero-visual {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: 42vw !important;
+    min-height: 260px !important;
+    overflow: hidden !important;
+    top: 0 !important;
+    right: 0 !important;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent    0%,
+      rgba(0,0,0,.5) 14%,
+      #000           30%,
+      #000           72%,
+      transparent   100%
+    ) !important;
+    mask-image: linear-gradient(
+      to bottom,
+      transparent    0%,
+      rgba(0,0,0,.5) 14%,
+      #000           30%,
+      #000           72%,
+      transparent   100%
+    ) !important;
+  }
+
+  .hero-beet-img {
+    height: 100% !important;
+    object-position: center 15% !important;
+  }
+
+  .hero-visual::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(26,10,15,.55) 0%,
+      transparent        50%,
+      rgba(26,10,15,.35) 100%
+    ) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-text {
+    padding: calc(var(--nav-h, 80px) + 24px) 6% 28px !important;
+  }
+  .hero-title { font-size: clamp(2rem, 8vw, 2.8rem) !important; }
+  .hero-visual {
+    height: 56vw !important;
+    min-height: 200px !important;
+  }
+  .hero-stats {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+  .stat { padding: 0 12px !important; }
+}
+
+@media (max-width: 400px) {
+  .hero-text {
+    padding: calc(var(--nav-h, 72px) + 16px) 5% 20px !important;
+  }
+  .hero-title {
+    font-size: clamp(1.85rem, 9vw, 2.4rem) !important;
+    line-height: 1.1 !important;
+    margin-bottom: 12px !important;
+  }
+  .hero-desc {
+    font-size: .85rem !important;
+    margin-bottom: 20px !important;
+  }
+  .hero-btns {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+  .hero-btns .btn-primary,
+  .hero-btns .btn-outline,
+  .hero-btns a {
+    text-align: center !important;
+    padding: 13px 16px !important;
+    font-size: .88rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    display: block !important;
+  }
+  .hero-visual {
+    height: 64vw !important;
+    min-height: 170px !important;
+  }
+  .hero-stats {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px 0 !important;
+    width: 100% !important;
+    padding-top: 16px !important;
+    flex-wrap: unset !important;
+  }
+  .stat {
+    padding: 0 8px !important;
+    border-left: 1px solid rgba(255,255,255,.15) !important;
+  }
+  .stat:nth-child(odd) { border-left: none !important; }
+  .stat:last-child {
+    grid-column: 1 / -1 !important;
+    text-align: center !important;
+    border-left: none !important;
+    padding-top: 10px !important;
+    border-top: 1px solid rgba(255,255,255,.08) !important;
+  }
+  .stat-num   { font-size: 1.35rem !important; }
+  .stat-label { font-size: .6rem !important; }
+}

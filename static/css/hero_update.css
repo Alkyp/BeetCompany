@@ -1,0 +1,99 @@
+/* ═══════════════════════════════════════════════════════════════
+   HERO UPDATE — Gambar geser kiri + lebih besar + font diperbesar
+   File: static/css/hero_update.css
+   Tambahkan di <head> PALING TERAKHIR (setelah hero_fix.css)
+═══════════════════════════════════════════════════════════════ */
+
+
+/* ── 1. VISUAL COLUMN — perlebar & geser ke kiri ── */
+.hero-visual {
+  width: 75% !important;
+  right: 0 !important;
+  left: 20% !important;
+  /* Mask lembut — transisi panjang, tidak ada garis keras */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000        22%
+  ) !important;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000        22%
+  ) !important;
+}
+
+/* Hapus overlay gelap sepenuhnya */
+.hero-visual::after {
+  display: none !important;
+}
+
+
+/* ── 2. GAMBAR — lebih besar + anchor kiri bawah ── */
+.hero-beet-img {
+  width: 100% !important;
+  height: 108% !important;
+  object-fit: contain !important;
+  object-position: bottom left !important;
+  transform: translateX(-14%) scale(1) !important;
+  transform-origin: bottom left !important;
+  mix-blend-mode: screen !important;
+  filter: brightness(1.1) saturate(1.12) !important;
+}
+
+
+/* ── 3. FONT HERO — perbesar semua ── */
+.hero-title {
+  font-size: clamp(3.4rem, 6vw, 6rem) !important;
+  line-height: 1.06 !important;
+  margin-bottom: 26px !important;
+}
+
+.hero-desc {
+  font-size: 1.18rem !important;
+  line-height: 1.78 !important;
+  max-width: 500px !important;
+  margin-bottom: 40px !important;
+}
+
+.hero-btns .btn-primary,
+.hero-btns .btn-outline,
+.hero-btns a {
+  font-size: 1rem !important;
+  padding: 14px 32px !important;
+}
+
+.stat-num {
+  font-size: 2.2rem !important;
+  font-weight: 700 !important;
+}
+
+.stat-label {
+  font-size: .8rem !important;
+  letter-spacing: .08em !important;
+}
+
+
+/* ── 4. RESPONSIVE ── */
+@media (max-width: 1100px) {
+  /* Sembunyikan gambar di mobile/tablet */
+  .hero-visual {
+    display: none !important;
+  }
+
+  .hero-title { font-size: clamp(2.6rem, 7vw, 4.2rem) !important; }
+  .hero-desc  { font-size: 1.05rem !important; }
+}
+
+@media (max-width: 640px) {
+  .hero-title { font-size: clamp(2.2rem, 9vw, 3rem) !important; }
+  .hero-desc  { font-size: .97rem !important; }
+  .stat-num   { font-size: 1.7rem !important; }
+}
+
+@media (max-width: 400px) {
+  .hero-title { font-size: clamp(2rem, 10vw, 2.6rem) !important; }
+  .hero-desc  { font-size: .9rem !important; }
+}
+
+

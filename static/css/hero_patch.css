@@ -1,0 +1,62 @@
+/* ═══════════════════════════════════════════════════════════════
+   HERO PATCH — gambar mepet bawah + border tipis
+   Cara pakai: tambahkan di <head> PALING TERAKHIR:
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/hero_patch.css') }}" />
+═══════════════════════════════════════════════════════════════ */
+
+/* ── 1. GAMBAR MEPET KE BAWAH ──────────────────────────────── */
+
+/* Grid hero: kolom visual align ke bawah */
+.hero-content {
+  align-items: end !important;
+}
+
+/* Kolom teks tetap center vertikal */
+.hero-text {
+  align-self: center !important;
+}
+
+/* Visual column: hapus flex centering, biarkan gambar anchor ke bawah */
+.hero-visual {
+  align-items: flex-end !important;
+  overflow: visible !important;    /* biarkan gambar "meluber" ke bawah section */
+}
+
+/* Gambar: geser ke bawah, sedikit lebih besar agar mepet */
+.hero-beet-img {
+  margin-bottom: -6px !important;  /* tutup gap sub-pixel di browser */
+  vertical-align: bottom !important;
+}
+
+/* Pastikan section tidak potong gambar di bawah */
+#home {
+  overflow: visible !important;    /* ganti dari hidden */
+}
+
+/* Section berikutnya: z-index lebih tinggi agar tampak "di atas" hero */
+#home + section,
+#video {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* ── 2. BORDER / RING LEBIH TIPIS ─────────────────────────── */
+
+/* Ring luar — opacity dikurangi dari .2 → .06 */
+.hero-visual::before {
+  border: 1px solid rgba(212, 175, 106, .06) !important;
+}
+
+/* Ring tengah — opacity dikurangi dari .08 → .03 */
+.hero-visual::after {
+  border: 1px solid rgba(255, 255, 255, .03) !important;
+}
+
+/* Shimmer ring dari hero_anim.css — lebih samar */
+.hero-visual::before {
+  background-image: repeating-conic-gradient(
+    rgba(212, 175, 106, .12) 0deg 4deg,
+    transparent 4deg 16deg
+  ) !important;
+}
